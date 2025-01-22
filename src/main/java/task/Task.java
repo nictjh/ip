@@ -2,13 +2,29 @@ package task;
 
 public class Task {
 
-    StringBuilder description = new StringBuilder();
+    private StringBuilder description = new StringBuilder();
+    private boolean isDone;
 
     public Task(String description) {
         this.description.append(description);
+        this.isDone = false;
     }
 
-    public String getDescription() {
-        return description.toString();
+    public boolean getStatus() {
+        return isDone;
+    }
+
+    public void markDone() {
+        this.isDone = true;
+    }
+
+    public void unmark() {
+        this.isDone = false;
+    }
+
+    @Override
+    public String toString() {
+        String checkBox = isDone ? "[X] " : "[ ] ";
+        return checkBox +  description.toString();
     }
 }

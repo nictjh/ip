@@ -5,7 +5,6 @@ import taskList.TaskList;
 import task.Task;
 
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Solace {
 
@@ -48,22 +47,30 @@ public class Solace {
         Scanner input = new Scanner(System.in);
 
         while (isAlive) {
-            String command = input.nextLine(); // Gets the command
-            System.out.println(dividerLine);
+            String entry = input.nextLine(); // Gets user input
+            String[] entryArray = entry.split(" "); // future commands might have more details
+            String command = entryArray[0]; // first word is the command
+            System.out.println(dividerLine); // Line after every command
 
             switch (command) {
                 case "bye":
                     ExitCommand exitCommand = new ExitCommand();
                     exitCommand.execute(solace);
                     break;
+                case "mark":
+                    System.out.println(solace.taskList.markTask(Integer.parseInt(entryArray[1])) + dividerLine);
+                    break;
+                case "unmark":
+                    System.out.println(solace.taskList.unmarkTask(Integer.parseInt(entryArray[1])) + dividerLine);
+                    break;
                 case "list":
                     ListCommand listCommand = new ListCommand();
                     listCommand.execute(solace);
-                    continue;
+                    break;
                 default:
-                    Task task = new Task(command);
+                    Task task = new Task(entry);
                     solace.taskList.addTask(task);
-                    System.out.println(" added: " + command + "\n" + dividerLine); // Echo ability
+                    System.out.println("\tadded: " + entry + "\n" + dividerLine); // Echo ability
             }
         }
     }
