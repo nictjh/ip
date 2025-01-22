@@ -1,0 +1,9 @@
+../src/main/java/app/Solace.java
+../src/main/java/taskList/TaskList.java
+../src/main/java/task/ToDoTask.java
+../src/main/java/task/EventTask.java
+../src/main/java/task/DeadlineTask.java
+../src/main/java/task/Task.java
+../src/main/java/commands/ListCommand.java
+../src/main/java/commands/Command.java
+../src/main/java/commands/ExitCommand.java

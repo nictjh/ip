@@ -13,7 +13,7 @@ public class TaskList {
 
     public String addTask(Task task) {
         this.tasks.add(task);
-        String defMsg = "Got it. I've added this task: \n\t";
+        String defMsg = "Got it. I've added this task:\n\t";
         return defMsg + task.toString() + "\n";
     }
 

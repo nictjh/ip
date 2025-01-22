@@ -10,12 +10,12 @@ public class Solace {
     private static boolean isAlive = true;
     private static final String dividerLine = "--------------------------------------";
     private static final String logo =
-            "  _____       _                 \n"
-            + " / ____|     | |                \n"
-            + "| (___   ___ | | __ _  ___ ___  \n"
-            + " \\___ \\ / _ \\| |/ _` |/ __/ _ \\ \n"
-            + " ____) | (_) | | (_| | (_|  __/ \n"
-            + "|_____/ \\___/|_|\\__,_|\\___\\___| \n";
+            "  _____       _\n"
+            + " / ____|     | |\n"
+            + "| (___   ___ | | __ _  ___ ___\n"
+            + " \\___ \\ / _ \\| |/ _` |/ __/ _ \\\n"
+            + " ____) | (_) | | (_| | (_|  __/\n"
+            + "|_____/ \\___/|_|\\__,_|\\___\\___|\n";
     private final TaskList taskList;
 
 
@@ -46,6 +46,11 @@ public class Solace {
         Scanner input = new Scanner(System.in);
 
         while (isAlive) {
+
+            if (!input.hasNextLine()) {
+                break; //Fixing bug when there is no line to read but below call nextLine
+            }
+
             String entry = input.nextLine(); // Gets user input
             String[] entryArray = entry.split(" "); // future commands might have more details
             String command = entryArray[0]; // first word is the command
@@ -109,5 +114,6 @@ public class Solace {
                     System.out.println("\tadded: " + entry + "\n" + dividerLine); // Echo ability
             }
         }
+        input.close();
     }
 }
