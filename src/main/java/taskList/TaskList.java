@@ -2,6 +2,7 @@ package taskList;
 
 import task.Task;
 import java.util.ArrayList;
+import exceptions.*;
 
 public class TaskList {
 
@@ -17,20 +18,24 @@ public class TaskList {
         return defMsg + task.toString() + "\n";
     }
 
-    public String markTask(int num) {
+    public String markTask(int num) throws InvalidTaskNumberException, RepeatedTaskUpdateException {
         // Error handling
         if (num - 1 < 0 || num - 1 >= this.tasks.size()) {
-            return "Invalid task number.\n";
+            throw new InvalidTaskNumberException();
+        } else if (this.tasks.get(num - 1).getStatus()) {
+            throw new RepeatedTaskUpdateException();
         }
         Task target = this.tasks.get(num-1);
         target.markDone();
         return "Nice! I've marked this task as done: \n\t" + target.toString() + "\n";
     }
 
-    public String unmarkTask(int num) {
+    public String unmarkTask(int num) throws InvalidTaskNumberException, RepeatedTaskUpdateException {
         // Error handling
-        if (num - 1 < 0 || num - 1 >= this.tasks.size() || !this.tasks.get(num - 1).getStatus()) {
-            return "Invalid task number or Task is not marked done yet.\n";
+        if (num - 1 < 0 || num - 1 >= this.tasks.size()) {
+            throw new InvalidTaskNumberException();
+        } else if (!this.tasks.get(num - 1).getStatus()) {
+            throw new RepeatedTaskUpdateException();
         }
         Task target = this.tasks.get(num-1);
         target.unmark();
