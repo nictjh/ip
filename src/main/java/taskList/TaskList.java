@@ -18,6 +18,19 @@ public class TaskList {
         return defMsg + task.toString() + "\n";
     }
 
+    public String removeTask(int num) throws InvalidTaskNumberException, EmptyTaskListException {
+        if (this.tasks.isEmpty()) {
+            throw new EmptyTaskListException();
+        }
+        if (num - 1 < 0 || num - 1 >= this.tasks.size()) {
+            throw new InvalidTaskNumberException();
+        }
+        Task target = this.tasks.get(num-1);
+        this.tasks.remove(num-1); // which might be faster
+        String defMsg = "Noted. I've removed this task:\n\t";
+        return defMsg + target.toString() + "\n";
+    }
+
     public String markTask(int num) throws InvalidTaskNumberException, RepeatedTaskUpdateException {
         // Error handling
         if (num - 1 < 0 || num - 1 >= this.tasks.size()) {

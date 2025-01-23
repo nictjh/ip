@@ -126,6 +126,13 @@ public class Solace {
                                 + solace.taskList.getSize()
                                 + dividerLine);
                         break;
+                    case "delete":
+                        validateArguments(entryArray, 2);
+                        int deleteIndex = Integer.parseInt(entryArray[1]);
+                        System.out.println(solace.taskList.removeTask(deleteIndex)
+                                + solace.taskList.getSize()
+                                + dividerLine);
+                        break;
                     default:
                         throw new UnknownCommand();
 //                        Task task = new Task(entry);
@@ -135,7 +142,7 @@ public class Solace {
                 }
 
             } catch (MissingArgumentException | UnknownCommand | InvalidTaskNumberException
-                     | RepeatedTaskUpdateException e) {
+                     | RepeatedTaskUpdateException | EmptyTaskListException e) {
                 System.out.println(e.getMessage());
                 System.out.println(dividerLine);
             }
