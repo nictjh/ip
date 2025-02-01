@@ -1,4 +1,12 @@
-../src/main/java/app/Solace.java
+../src/main/java/app/app.Solace.java
+../src/main/java/exceptions/EmptyTaskListException.java
+../src/main/java/exceptions/RepeatedTaskUpdateException.java
+../src/main/java/exceptions/MissingEventDetailsException.java
+../src/main/java/exceptions/UnknownCommand.java
+../src/main/java/exceptions/MissingToDoDescException.java
+../src/main/java/exceptions/MissingDeadlineDetailsException.java
+../src/main/java/exceptions/InvalidTaskNumberException.java
+../src/main/java/exceptions/MissingArgumentException.java
 ../src/main/java/taskList/TaskList.java
 ../src/main/java/task/ToDoTask.java
 ../src/main/java/task/EventTask.java
