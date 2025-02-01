@@ -1,9 +1,9 @@
 package app;
 import commands.ExitCommand;
+import commands.FindDateCommand;
 import commands.ListCommand;
 import commands.SaveCommand;
 import taskList.TaskList;
-import task.Task;
 import task.DeadlineTask;
 import task.EventTask;
 import task.ToDoTask;
@@ -155,6 +155,12 @@ public class Solace {
                     case "save":
                         SaveCommand saveCommand = new SaveCommand(solace.filePath);
                         saveCommand.execute(solace);
+                        break;
+                    case "find":
+                        validateArguments(entryArray, 2);
+                        String findString = entryArray[1];
+                        FindDateCommand findDateCommand = new FindDateCommand(findString);
+                        findDateCommand.execute(solace);
                         break;
                     default:
                         throw new UnknownCommand();

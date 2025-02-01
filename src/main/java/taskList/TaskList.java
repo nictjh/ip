@@ -7,6 +7,8 @@ import task.Task;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import exceptions.*;
 import task.ToDoTask;
@@ -96,6 +98,25 @@ public class TaskList {
         return taskList.toString();
     }
 
+    //Overloaded method
+    public String printTask(ArrayList<Task> listOfTasks) {
+
+        StringBuilder taskList = new StringBuilder();
+
+        if (listOfTasks.isEmpty()) {
+            return "No tasks found.\n";
+        }
+
+        taskList.append("Here are the tasks found:\n");
+        for (int i = 0; i < listOfTasks.size(); ++i) {
+            // change to 1 indexed
+            String entry = (i+1) + "." + listOfTasks.get(i).toString() + "\n";
+            taskList.append(entry);
+        }
+
+        return taskList.toString();
+    }
+
     public void loadTasks(File file) {
         // Load tasks from file
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -119,4 +140,52 @@ public class TaskList {
             System.out.println("An error occurred while loading the task list from storage");
         }
     }
+
+    public String findTasksByDate(LocalDate date) {
+//        System.out.println("Check running");
+//        System.out.println("Query: " + date);
+        ArrayList<Task> matched = new ArrayList<>();
+
+        for (Task task : this.tasks) {
+            if (task instanceof DeadlineTask) {
+                LocalDate taskDate = ((DeadlineTask) task).getLocalDate();
+
+                if (taskDate == null) {
+//                    System.out.println("DeadlineTask has null date. Skipping...");
+                    continue;  // skip this task
+                }
+
+//                System.out.println("Checking~~~~~~~~~~~ : " + taskDate);
+                if (taskDate.toString().trim().equals(date.toString().trim())) {
+                    matched.add(task);
+//                    System.out.println("Added something from Deadline");
+                }
+            } else if (task instanceof EventTask) {
+                LocalDate eventDate = ((EventTask) task).getStartLocalDate();
+                LocalDate eventEndDate = ((EventTask) task).getEndLocalDate();
+
+                if (eventDate == null && eventEndDate == null) {
+//                    System.out.println("Skipping EventTask due to null start and end dates.");
+                    continue;
+                }
+
+                // Match conditions:
+                boolean startMatches = (eventDate != null && eventDate.toString().trim().equals(date.toString().trim()));
+                boolean endMatches = (eventEndDate != null && eventEndDate.toString().trim().equals(date.toString().trim()));
+
+                // Add to matched list if either start or end date matches
+                if (startMatches || endMatches) {
+                    matched.add(task);
+//                    System.out.println("EventTask matched and added!");
+                }
+            }
+        }
+
+//        System.out.println("Matched Tasks: " + matched.size());
+        return printTask(matched);
+    }
+
+
+
+
 }
