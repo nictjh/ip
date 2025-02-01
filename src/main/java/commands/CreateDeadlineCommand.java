@@ -1,7 +1,8 @@
 package commands;
 import app.Solace;
-import ui.Ui;
+import taskList.TaskList;
 import task.DeadlineTask;
+import ui.Ui;
 
 public class CreateDeadlineCommand extends Command{
 
@@ -19,6 +20,11 @@ public class CreateDeadlineCommand extends Command{
         String statusMsg = solace.getTaskList().addTask(newDeadlineTask);
         Ui ui = solace.getUi();
         ui.printMessage(statusMsg + solace.getTaskList().getSize());
+    }
+
+    public String execute(TaskList tasklist) {
+        DeadlineTask newDeadlineTask = new DeadlineTask(description, deadline); //Creates the deadline task
+        return tasklist.addTask(newDeadlineTask);
     }
 
     @Override
