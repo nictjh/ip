@@ -1,12 +1,13 @@
 package commands;
 import app.Solace;
+import ui.Ui;
 
 public class ExitCommand extends Command {
     @Override
     public void execute(Solace solace) {
-        solace.setAlive(false);
-        System.out.println("Bye. Hope to see you again soon!\n" + solace.getDividerLine());
-//        logExecution();
+        solace.setAlive();
+        Ui ui = solace.getUi();
+        ui.printMessage("Bye. Hope to see you again soon!\n");
     }
 
     @Override

@@ -11,13 +11,13 @@ public class DeadlineTask extends Task{
 
     private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM d yyyy h:mm a");
     private static final DateTimeFormatter[] INPUT_FORMATS = new DateTimeFormatter[] {
-        DateTimeFormatter.ofPattern(" d/M/yyyy HHmm").withResolverStyle(ResolverStyle.LENIENT),
-        DateTimeFormatter.ofPattern(" dd/MM/yyyy HHmm").withResolverStyle(ResolverStyle.LENIENT),
-        DateTimeFormatter.ofPattern(" yyyy-M-d HHmm").withResolverStyle(ResolverStyle.LENIENT),
-        DateTimeFormatter.ofPattern(" yyyy-MM-dd HHmm").withResolverStyle(ResolverStyle.LENIENT),
+        DateTimeFormatter.ofPattern("d/M/yyyy HHmm").withResolverStyle(ResolverStyle.LENIENT),
+        DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm").withResolverStyle(ResolverStyle.LENIENT),
+        DateTimeFormatter.ofPattern("yyyy-M-d HHmm").withResolverStyle(ResolverStyle.LENIENT),
+        DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm").withResolverStyle(ResolverStyle.LENIENT),
     };
     private static final DateTimeFormatter[] WRITE_FORMATS = new DateTimeFormatter[] {
-        DateTimeFormatter.ofPattern(" dd/M/yyyy HHmm"),
+        DateTimeFormatter.ofPattern("dd/M/yyyy HHmm"),
     };
     private final String deadline;
     protected LocalDateTime by;

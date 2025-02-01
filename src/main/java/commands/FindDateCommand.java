@@ -1,6 +1,7 @@
 package commands;
 
 import app.Solace;
+import ui.Ui;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -25,10 +26,11 @@ public class FindDateCommand extends Command {
 
     @Override
     public void execute(Solace solace) {
+        Ui ui = solace.getUi();
         try {
-            System.out.println(solace.getTaskList().findTasksByDate(this.DATE) + solace.getDividerLine());
+            ui.printMessage(solace.getTaskList().findTasksByDate(this.DATE));
         } catch (NullPointerException e) {
-            System.out.println("No tasks found on " + this.DATE);
+            ui.printMessage("No tasks found on " + this.DATE);
         }
     }
 
