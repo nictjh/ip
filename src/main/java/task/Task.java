@@ -2,7 +2,7 @@ package task;
 
 public class Task {
 
-    private StringBuilder description = new StringBuilder();
+    private final StringBuilder description = new StringBuilder();
     private boolean isDone;
 
     public Task(String description) {

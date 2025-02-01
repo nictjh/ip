@@ -56,10 +56,28 @@ public class SaveCommand extends Command {
         if (task instanceof ToDoTask) {
             return "todo " + task.getDescription();
         } else if (task instanceof DeadlineTask) {
-            return "deadline " + task.getDescription() + " /by " + ((DeadlineTask) task).getDeadline();
+            // Account for the new format of DateTime
+            if ((((DeadlineTask) task).getDateTime() == null)) {
+                return "deadline " + task.getDescription() + " /by " + ((DeadlineTask) task).getDeadline();
+            } else {
+                return "deadline " + task.getDescription() + " /by " + ((DeadlineTask) task).writeDateTime();
+            }
+
         } else if (task instanceof EventTask) {
-            return "event " + task.getDescription() + " /from " + ((EventTask) task).getFrom() + " /to "
-                    + ((EventTask) task).getTo();
+            if ((((EventTask) task).getStartDateTime() != null) && (((EventTask) task).getEndDateTime() != null)) {
+                return "event " + task.getDescription() + " /from " + ((EventTask) task).writeDateTime(((EventTask) task).getStartDateTime()) + " /to "
+                        + ((EventTask) task).writeDateTime(((EventTask) task).getEndDateTime());
+            } else if ((((EventTask) task).getStartDateTime() == null) && (((EventTask) task).getEndDateTime() != null)) {
+                return "event " + task.getDescription() + " /from " + ((EventTask) task).getFrom() + " /to "
+                        + ((EventTask) task).writeDateTime(((EventTask) task).getEndDateTime());
+            } else if ((((EventTask) task).getStartDateTime() != null) && (((EventTask) task).getEndDateTime() == null)) {
+                return "event " + task.getDescription() + " /from " + ((EventTask) task).writeDateTime(((EventTask) task).getStartDateTime()) + " /to "
+                        + ((EventTask) task).getTo();
+            } else {
+                return "event " + task.getDescription() + " /from " + ((EventTask) task).getFrom() + " /to "
+                        + ((EventTask) task).getTo();
+            }
+
         } else {
             return "";
         }
