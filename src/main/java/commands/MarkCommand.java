@@ -1,5 +1,6 @@
 package commands;
 import app.Solace;
+import taskList.TaskList;
 import ui.Ui;
 import exceptions.InvalidTaskNumberException;
 import exceptions.RepeatedTaskUpdateException;
@@ -16,6 +17,10 @@ public class MarkCommand extends Command {
         String status = solace.getTaskList().markTask(index);
         Ui ui = solace.getUi();
         ui.printMessage(status);
+    }
+
+    public void execute(TaskList tasklist) throws InvalidTaskNumberException, RepeatedTaskUpdateException {
+        String status = tasklist.markTask(index);
     }
 
     @Override

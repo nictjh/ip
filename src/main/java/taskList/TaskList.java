@@ -16,12 +16,6 @@ public class TaskList {
         this.tasks = new ArrayList<>(100);
     }
 
-//    //Overload the constructor later to take in a list of tasks
-//    public TaskList(File file) {
-//        this.tasks = new ArrayList<>(100);
-//        loadTasks(file);
-//    }
-
     // Overloaded constructor to take in ArrayList of tasks
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
@@ -29,6 +23,10 @@ public class TaskList {
 
     public ArrayList<Task> getList() {
         return this.tasks;
+    }
+
+    public Task getTask(int index) {
+        return this.tasks.get(index);
     }
 
     public String addTask(Task task) {
