@@ -1,8 +1,8 @@
 package commands;
+import app.Solace;
 import exceptions.InvalidTaskNumberException;
 import exceptions.RepeatedTaskUpdateException;
 import ui.Ui;
-import app.Solace;
 
 public class UnmarkCommand extends Command {
     private int index;

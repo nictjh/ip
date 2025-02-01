@@ -1,8 +1,5 @@
 package commands;
-
-import app.Solace;
 import ui.Ui;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
@@ -25,7 +22,7 @@ public class FindDateCommand extends Command {
     }
 
     @Override
-    public void execute(Solace solace) {
+    public void execute(app.Solace solace) {
         Ui ui = solace.getUi();
         try {
             ui.printMessage(solace.getTaskList().findTasksByDate(this.DATE));

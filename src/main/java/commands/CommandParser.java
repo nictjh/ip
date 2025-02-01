@@ -1,5 +1,4 @@
 package commands;
-import app.Solace;
 import exceptions.MissingArgumentException;
 import exceptions.MissingDeadlineDetailsException;
 import exceptions.MissingEventDetailsException;
@@ -23,7 +22,7 @@ public class CommandParser {
         }
     }
 
-    // returns Command to be executed in Solace
+    // returns Command to be executed in app.Solace
     public static Command parse(String input) throws MissingArgumentException {
         String[] inputArray = input.split(" ");
         String command = inputArray[0]; // Getting the commandType
@@ -73,7 +72,7 @@ public class CommandParser {
             case "save":
                 return new SaveCommand(FILE_PATH);
             default:
-                return new UnknownCommand(); // throws error need to be caught in Solace
+                return new UnknownCommand(); // throws error need to be caught in app.Solace
         }
     }
 
