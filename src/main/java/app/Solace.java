@@ -1,9 +1,22 @@
 package app;
-import commands.*;
+import commands.ExitCommand;
+import commands.ListCommand;
+import commands.SaveCommand;
 import taskList.TaskList;
-import task.*;
-import exceptions.*;
-
+import task.Task;
+import task.DeadlineTask;
+import task.EventTask;
+import task.ToDoTask;
+import exceptions.EmptyTaskListException;
+import exceptions.InvalidTaskNumberException;
+import exceptions.MissingArgumentException;
+import exceptions.UnknownCommand;
+import exceptions.MissingDeadlineDetailsException;
+import exceptions.MissingEventDetailsException;
+import exceptions.MissingToDoDescException;
+import exceptions.RepeatedTaskUpdateException;
+import java.io.IOException;
+import java.io.File;
 import java.util.Scanner;
 
 public class Solace {
@@ -18,12 +31,18 @@ public class Solace {
             + " ____) | (_) | | (_| | (_|  __/\n"
             + "|_____/ \\___/|_|\\__,_|\\___\\___|\n";
     private final TaskList taskList;
-
+    private final String filePath = "bin/storage";
 
     public Solace() {
         System.out.println(logo);
         System.out.println("Hello! I'm Solace\nWhat can I do for you?\n" + this.getDividerLine());
-        this.taskList = new TaskList();
+        // this.taskList = new TaskList(); // Need to edit this part so as to load from file
+        File file = new File(filePath + File.separator + "taskList.txt");
+        if (file.exists()) {
+            this.taskList = new TaskList(file);
+        } else {
+            this.taskList = new TaskList();
+        }
     }
 
     public void setAlive(boolean alive) {
@@ -133,12 +152,12 @@ public class Solace {
                                 + solace.taskList.getSize()
                                 + dividerLine);
                         break;
+                    case "save":
+                        SaveCommand saveCommand = new SaveCommand(solace.filePath);
+                        saveCommand.execute(solace);
+                        break;
                     default:
                         throw new UnknownCommand();
-//                        Task task = new Task(entry);
-//                        solace.taskList.addTask(task); // dont print out the message
-//                        System.out.println("\tadded: " + entry + "\n" + dividerLine); // Echo ability
-
                 }
 
             } catch (MissingArgumentException | UnknownCommand | InvalidTaskNumberException
