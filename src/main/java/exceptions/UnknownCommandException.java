@@ -1,8 +1,8 @@
 package exceptions;
 
-public class UnknownCommand extends Exception {
+public class UnknownCommandException extends Exception {
 
-    public UnknownCommand() {
+    public UnknownCommandException() {
         super("Error! Unknown command please try again with another valid command");
     }
 

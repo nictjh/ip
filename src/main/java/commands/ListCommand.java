@@ -1,11 +1,12 @@
 package commands;
 import app.Solace;
+import ui.Ui;
 
 public class ListCommand extends Command {
     @Override
     public void execute(Solace solace) {
-        System.out.println(solace.getTaskList().printTasks() + solace.getDividerLine());
-//        logExecution();
+        Ui ui = solace.getUi();
+        ui.printMessage(solace.getTaskList().printTasks());
     }
 
     @Override
