@@ -1,8 +1,18 @@
 package taskList;
 
+import jdk.jfr.Event;
+import task.DeadlineTask;
+import task.EventTask;
 import task.Task;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import exceptions.*;
+import task.ToDoTask;
+
+import java.io.IOException;
+import java.io.File;
 
 public class TaskList {
 
@@ -10,6 +20,16 @@ public class TaskList {
 
     public TaskList() {
         this.tasks = new ArrayList<>(100);
+    }
+
+    //Overload the constructor later to take in a list of tasks
+    public TaskList(File file) {
+        this.tasks = new ArrayList<>(100);
+        loadTasks(file);
+    }
+
+    public ArrayList<Task> getList() {
+        return this.tasks;
     }
 
     public String addTask(Task task) {
@@ -74,5 +94,29 @@ public class TaskList {
         }
 
         return taskList.toString();
+    }
+
+    public void loadTasks(File file) {
+        // Load tasks from file
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("todo")) {
+                    this.tasks.add(new ToDoTask(line.substring(5).trim()));
+                } else if (line.startsWith("deadline")) {
+                    String[] parts = line.substring(9).split(" /by ");
+                    this.tasks.add(new DeadlineTask(parts[0], parts[1]));
+                } else if (line.startsWith("event")) {
+                    String[] parts = line.substring(6).split(" /from | /to "); //Splits OR
+                    this.tasks.add(new EventTask(parts[0], parts[1], parts[2]));
+                } else if (line.startsWith("mark")) {
+                    int markIndex = Integer.parseInt(line.substring(5).trim()) - 1; // 0 indexed
+                    this.tasks.get(markIndex).markDone();
+                }
+            }
+//            System.out.println("Tasks loaded from storage");
+        } catch (IOException e) {
+            System.out.println("An error occurred while loading the task list from storage");
+        }
     }
 }

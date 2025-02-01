@@ -22,6 +22,10 @@ public class Task {
         this.isDone = false;
     }
 
+    public String getDescription() {
+        return this.description.toString();
+    }
+
     @Override
     public String toString() {
         String checkBox = isDone ? "[X] " : "[ ] ";
