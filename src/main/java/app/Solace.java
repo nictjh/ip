@@ -9,8 +9,6 @@ import exceptions.InvalidTaskNumberException;
 import exceptions.MissingArgumentException;
 import exceptions.UnknownCommandException;
 import exceptions.RepeatedTaskUpdateException;
-
-import java.io.File;
 import java.util.Scanner;
 
 public class Solace {

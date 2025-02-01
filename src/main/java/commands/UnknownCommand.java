@@ -1,6 +1,6 @@
 package commands;
-import exceptions.UnknownCommandException;
 import app.Solace;
+import exceptions.UnknownCommandException;
 
 public class UnknownCommand extends Command {
 
