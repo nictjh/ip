@@ -9,6 +9,9 @@ import taskList.TaskList;
 import task.ToDoTask;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * JUnit test class for the CreateDeadlineCommand
+ */
 public class CreateDeadlineCommandTest {
 
     private TaskList tasklist;

@@ -88,10 +88,13 @@ public class CommandParser {
                 validateArguments(inputArray, 2);
                 int deleteIndex = Integer.parseInt(inputArray[1]);
                 return new DeleteTaskCommand(deleteIndex);
-            case "find":
+            case "findDate":
                 validateArguments(inputArray, 2);
                 String findString = inputArray[1];
                 return new FindDateCommand(findString);
+            case "find":
+                String desc = extractDescription(inputArray);
+                return new FindCommand(desc);
             case "save":
                 return new SaveCommand(FILE_PATH);
             default:
