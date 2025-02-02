@@ -155,6 +155,16 @@ public class TaskList {
         return printTask(matched);
     }
 
+    public String findTasksByKeyword(String keyword) {
+        ArrayList<Task> matched = new ArrayList<>();
+        for (Task task : this.tasks) {
+            if (task.getDescription().contains(keyword)) {
+                matched.add(task);
+            }
+        }
+        return printTask(matched);
+    }
+
 
 
 
