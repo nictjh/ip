@@ -5,6 +5,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
+/**
+ * Represents a task with a deadline
+ * Contains a description and a deadline
+ */
 public class EventTask extends Task {
 
     private final String from;
@@ -23,6 +27,13 @@ public class EventTask extends Task {
             DateTimeFormatter.ofPattern("dd/M/yyyy HHmm"),
     };
 
+    /**
+     * Creates a new EventTask object
+     *
+     * @param desc Description of the task
+     * @param from Start time of the event
+     * @param to End time of the event
+     */
     public EventTask(String desc, String from, String to) {
         super(desc);
         this.from = from.trim();
@@ -65,6 +76,12 @@ public class EventTask extends Task {
         return (this.end != null) ? this.end.toLocalDate() : null;
     }
 
+    /**
+     * Parses a string input into a LocalDateTime object
+     *
+     * @param input String input to be parsed, the from and to variables specificallu
+     * @return LocalDateTime object parsed from the input
+     */
     private static LocalDateTime parseDateTime(String input) {
         for (DateTimeFormatter format : INPUT_FORMATS) {
             try {
@@ -76,6 +93,12 @@ public class EventTask extends Task {
         return null;
     }
 
+    /**
+     * Formats a LocalDateTime object into a string to be outputted
+     *
+     * @param dateTime LocalDateTime object to be formatted
+     * @return String representation of the LocalDateTime object in the format "MMM d yyyy h:mm a"
+     */
     private static String formatOutputDateTime(LocalDateTime dateTime) {
         if (dateTime == null) {
             return "";
@@ -83,6 +106,12 @@ public class EventTask extends Task {
         return dateTime.format(OUTPUT_FORMAT);
     }
 
+    /**
+     * Writes a LocalDateTime object into a string to be stored
+     *
+     * @param dateTime LocalDateTime object to be written
+     * @return String representation of the LocalDateTime object in the format "dd/M/yyyy HHmm"
+     */
     public String writeDateTime(LocalDateTime dateTime) {
         if (dateTime == null) {
             return "";

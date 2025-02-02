@@ -1,8 +1,16 @@
 package task;
 
+/**
+ * Represents a task in the task list
+ * Contains the description of the task
+ */
 public class ToDoTask extends Task {
-    //Tasks without any date/time attached to it
 
+    /**
+     * Creates a new ToDoTask object
+     *
+     * @param desc Description of the task
+     */
     public ToDoTask(String desc) {
         super(desc);
     }

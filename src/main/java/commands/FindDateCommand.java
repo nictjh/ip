@@ -1,10 +1,16 @@
 package commands;
-import ui.Ui;
+
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.time.LocalDate;
 
+import ui.Ui;
+
+/**
+ * Represents the command to find tasks by date
+ *
+ */
 public class FindDateCommand extends Command {
 
     private final LocalDate DATE;
@@ -15,6 +21,11 @@ public class FindDateCommand extends Command {
             DateTimeFormatter.ofPattern("yyyy-MM-dd").withResolverStyle(ResolverStyle.LENIENT),
     };
 
+    /**
+     * Creates a new FindDateCommand object
+     *
+     * @param date The date to find tasks on
+     */
     public FindDateCommand(String date) {
         this.DATE = parseDateTime(date);
 //        System.out.println("FindDateCommand Parsed Date~~~~~~~~~~~~~~ : " + date);
@@ -36,6 +47,13 @@ public class FindDateCommand extends Command {
         System.out.println("Find Date Command is executed");
     }
 
+    /**
+     * Parses the input date string into a LocalDate object
+     * accepts multiple date formats
+     *
+     * @param input The input date string
+     * @return The parsed LocalDate object or null if parsing fails
+     */
     private static LocalDate parseDateTime(String input) {
         for (DateTimeFormatter format : INPUT_FORMATS) {
             try {

@@ -2,7 +2,12 @@ package commands;
 import app.Solace;
 import ui.Ui;
 
+/**
+ * Represents the command to exit the application
+ *
+ */
 public class ExitCommand extends Command {
+
     @Override
     public void execute(Solace solace) {
         solace.setAlive();

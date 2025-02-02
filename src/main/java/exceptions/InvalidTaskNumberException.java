@@ -1,5 +1,8 @@
 package exceptions;
 
+/**
+ * Represents an exception when an invalid task number is entered
+ */
 public class InvalidTaskNumberException extends Exception {
 
     public InvalidTaskNumberException() {
