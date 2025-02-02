@@ -1,7 +1,7 @@
 package commands;
 import app.Solace;
-import ui.Ui;
 import task.EventTask;
+import ui.Ui;
 
 /**
  * Represents the command to create an event task

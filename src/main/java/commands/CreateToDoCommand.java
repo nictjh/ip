@@ -1,7 +1,7 @@
 package commands;
 import app.Solace;
-import ui.Ui;
 import task.ToDoTask;
+import ui.Ui;
 
 /**
  * Represents the command to create a new ToDo task

@@ -1,7 +1,7 @@
 package commands;
 import app.Solace;
-import taskList.TaskList;
 import task.DeadlineTask;
+import taskList.TaskList;
 import ui.Ui;
 
 /**

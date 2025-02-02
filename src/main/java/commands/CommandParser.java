@@ -73,7 +73,7 @@ public class CommandParser {
                 }
                 String deadlineDesc = extractDescription(inputArray);
                 String dDesc = deadlineDesc.substring(0, deadlineDesc.indexOf("/by"));
-                String by = deadlineDesc.substring(deadlineDesc.indexOf("/by") + 4); // Increment one more than before to remove leading space
+                String by = deadlineDesc.substring(deadlineDesc.indexOf("/by") + 4);
                 return new CreateDeadlineCommand(dDesc, by);
             case "event":
                 if (inputArray.length < 2 || !input.contains("/from") || !input.contains("/to")) {
@@ -81,8 +81,8 @@ public class CommandParser {
                 }
                 String eventDesc = extractDescription(inputArray);
                 String eDesc = eventDesc.substring(0, eventDesc.indexOf("/from"));
-                String from = eventDesc.substring(eventDesc.indexOf("/from") + 6, eventDesc.indexOf("/to")); // All values here incremented by 1
-                String to = eventDesc.substring(eventDesc.indexOf("/to") + 4); // Incremented by 1
+                String from = eventDesc.substring(eventDesc.indexOf("/from") + 6, eventDesc.indexOf("/to"));
+                String to = eventDesc.substring(eventDesc.indexOf("/to") + 4);
                 return new CreateEventCommand(eDesc, from, to);
             case "delete":
                 validateArguments(inputArray, 2);
@@ -98,5 +98,4 @@ public class CommandParser {
                 return new UnknownCommand(); // throws error need to be caught in app.Solace
         }
     }
-
 }

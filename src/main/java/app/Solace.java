@@ -2,17 +2,16 @@ package app;
 
 import java.util.Scanner;
 
-import commands.CommandParser;
 import commands.Command;
-import ui.Ui;
-import storage.Storage;
-import taskList.TaskList;
-
+import commands.CommandParser;
 import exceptions.EmptyTaskListException;
 import exceptions.InvalidTaskNumberException;
 import exceptions.MissingArgumentException;
-import exceptions.UnknownCommandException;
 import exceptions.RepeatedTaskUpdateException;
+import exceptions.UnknownCommandException;
+import storage.Storage;
+import taskList.TaskList;
+import ui.Ui;
 
 /**
  * Represents the main application logic for Solace
@@ -38,12 +37,10 @@ public class Solace {
     }
 
     public Ui getUi() {
-        // Getter
         return UI;
     }
 
     public Storage getStorage() {
-        // Getter function
         return this.STORAGE;
     }
 

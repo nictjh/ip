@@ -1,11 +1,9 @@
 package commands;
-
 import app.Solace;
-import taskList.TaskList;
-import ui.Ui;
-
 import exceptions.InvalidTaskNumberException;
 import exceptions.RepeatedTaskUpdateException;
+import taskList.TaskList;
+import ui.Ui;
 
 /**
  * Represents the command to mark a task as done

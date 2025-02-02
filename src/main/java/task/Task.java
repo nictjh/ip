@@ -6,7 +6,7 @@ package task;
  */
 public class Task {
 
-    private final StringBuilder description = new StringBuilder();
+    private final StringBuilder DESCRIPTION = new StringBuilder();
     private boolean isDone;
 
     /**
@@ -15,7 +15,7 @@ public class Task {
      * @param description The description of the task
      */
     public Task(String description) {
-        this.description.append(description);
+        this.DESCRIPTION.append(description);
         this.isDone = false;
     }
 
@@ -32,12 +32,12 @@ public class Task {
     }
 
     public String getDescription() {
-        return this.description.toString();
+        return this.DESCRIPTION.toString();
     }
 
     @Override
     public String toString() {
         String checkBox = isDone ? "[X] " : "[ ] ";
-        return checkBox +  description.toString();
+        return checkBox + DESCRIPTION.toString();
     }
 }
