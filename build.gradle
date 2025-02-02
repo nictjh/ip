@@ -37,10 +37,16 @@ application {
 }
 
 shadowJar {
-    archiveBaseName = "app"
-    archiveClassifier = null
+    archiveBaseName.set("solace-app") // Sets my custom name
+    archiveClassifier.set("") // No classifier
+    archiveVersion.set("1.0")
+    manifest {
+        attributes 'Main-Class': 'app.Solace'
+    }
 }
 
 run{
     standardInput = System.in
 }
+
+//java -jar build/libs/solace-app-1.0.jar <- runs my jar file
