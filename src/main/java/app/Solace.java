@@ -1,37 +1,39 @@
 package app;
-import commands.CommandParser;
+
+import java.util.Scanner;
+
 import commands.Command;
-import ui.Ui;
-import storage.Storage;
-import taskList.TaskList;
+import commands.CommandParser;
 import exceptions.EmptyTaskListException;
 import exceptions.InvalidTaskNumberException;
 import exceptions.MissingArgumentException;
-import exceptions.UnknownCommandException;
 import exceptions.RepeatedTaskUpdateException;
-import java.util.Scanner;
+import exceptions.UnknownCommandException;
+import storage.Storage;
+import taskList.TaskList;
+import ui.Ui;
 
 public class Solace {
 
     private static boolean isAlive;
     private final TaskList taskList;
     private final String FILE_PATH = "bin/storage";
-    private static Ui ui;
-    private Storage storage;
+    private static Ui UI;
+    private final Storage STORAGE;
 
     public Solace() {
-        ui = new Ui();
+        UI = new Ui();
         isAlive = true;
-        this.storage = new Storage(FILE_PATH);
-        this.taskList = storage.load();
+        this.STORAGE = new Storage(FILE_PATH);
+        this.taskList = STORAGE.load();
     }
 
     public Ui getUi() {
-        return ui;
+        return UI;
     }
 
     public Storage getStorage() {
-        return storage;
+        return this.STORAGE;
     }
 
     public void setAlive() {
@@ -56,15 +58,15 @@ public class Solace {
                     break; //Fixing bug when there is no line to read but below call nextLine
                 }
 
-                String userInput = ui.readCommand(input);
+                String userInput = UI.readCommand(input);
                 Command command = CommandParser.parse(userInput);
                 command.execute(solace);
 
             } catch (MissingArgumentException | UnknownCommandException | InvalidTaskNumberException
                      | RepeatedTaskUpdateException | EmptyTaskListException e) {
-                ui.printMessage(e.getMessage() + "\n");
+                UI.printMessage(e.getMessage() + "\n");
             } catch (Exception e) {
-                ui.printMessage("An error occurred: " + e.getMessage());
+                UI.printMessage("An error occurred: " + e.getMessage());
             }
         }
         input.close();

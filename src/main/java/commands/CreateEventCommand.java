@@ -1,7 +1,7 @@
 package commands;
 import app.Solace;
-import ui.Ui;
 import task.EventTask;
+import ui.Ui;
 
 public class CreateEventCommand extends Command {
 

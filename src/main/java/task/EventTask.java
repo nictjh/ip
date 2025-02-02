@@ -9,8 +9,8 @@ public class EventTask extends Task {
 
     private final String from;
     private final String to;
-    protected LocalDateTime start;
-    protected LocalDateTime end;
+    private LocalDateTime start;
+    private LocalDateTime end;
     private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM d yyyy h:mm a");
     private static final DateTimeFormatter[] INPUT_FORMATS = new DateTimeFormatter[] {
             DateTimeFormatter.ofPattern("d/M/yyyy HHmm").withResolverStyle(ResolverStyle.LENIENT),
@@ -103,6 +103,6 @@ public class EventTask extends Task {
         String formattedStart = (this.start != null) ? formatOutputDateTime(this.start) : this.from;
         String formattedEnd = (this.end != null) ? formatOutputDateTime(this.end) : this.to;
         return eventID + super.toString() + "(from: " + ((!formattedStart.isEmpty()) ? formattedStart : this.from)
-                + " to: " + ((!formattedEnd.isEmpty()) ? formattedEnd : this.to ) + ")";
+                + " to: " + ((!formattedEnd.isEmpty()) ? formattedEnd : this.to) + ")";
     }
 }

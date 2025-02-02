@@ -1,11 +1,16 @@
 package storage;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+
 import task.DeadlineTask;
 import task.EventTask;
+import task.Task;
 import task.ToDoTask;
 import taskList.TaskList;
-import task.Task;
 
 public class Storage {
 
@@ -37,7 +42,7 @@ public class Storage {
                     newTask.get(markIndex).markDone();
                 }
             }
-//            System.out.println("Tasks loaded from storage");
+            // System.out.println("Tasks loaded from storage");
         } catch (IOException e) {
             System.out.println("An error occurred while loading the task list from storage");
         }
@@ -45,7 +50,7 @@ public class Storage {
         return new TaskList(newTask);
     }
 
-    public void save(TaskList taskList) throws IOException{
+    public void save(TaskList taskList) throws IOException {
         ArrayList<Task> tasks = taskList.getList();
         File file = new File(filePath + File.separator + "taskList.txt");
         if (!file.getParentFile().exists()) {
@@ -82,13 +87,17 @@ public class Storage {
 
         } else if (task instanceof EventTask) {
             if ((((EventTask) task).getStartDateTime() != null) && (((EventTask) task).getEndDateTime() != null)) {
-                return "event " + task.getDescription() + " /from " + ((EventTask) task).writeDateTime(((EventTask) task).getStartDateTime()) + " /to "
-                        + ((EventTask) task).writeDateTime(((EventTask) task).getEndDateTime());
-            } else if ((((EventTask) task).getStartDateTime() == null) && (((EventTask) task).getEndDateTime() != null)) {
+                return "event " + task.getDescription() + " /from "
+                        + ((EventTask) task).writeDateTime(((EventTask) task).getStartDateTime())
+                        + " /to " + ((EventTask) task).writeDateTime(((EventTask) task).getEndDateTime());
+            } else if ((((EventTask) task).getStartDateTime() == null)
+                    && (((EventTask) task).getEndDateTime() != null)) {
                 return "event " + task.getDescription() + " /from " + ((EventTask) task).getFrom() + " /to "
                         + ((EventTask) task).writeDateTime(((EventTask) task).getEndDateTime());
-            } else if ((((EventTask) task).getStartDateTime() != null) && (((EventTask) task).getEndDateTime() == null)) {
-                return "event " + task.getDescription() + " /from " + ((EventTask) task).writeDateTime(((EventTask) task).getStartDateTime()) + " /to "
+            } else if ((((EventTask) task).getStartDateTime() != null)
+                    && (((EventTask) task).getEndDateTime() == null)) {
+                return "event " + task.getDescription() + " /from "
+                        + ((EventTask) task).writeDateTime(((EventTask) task).getStartDateTime()) + " /to "
                         + ((EventTask) task).getTo();
             } else {
                 return "event " + task.getDescription() + " /from " + ((EventTask) task).getFrom() + " /to "

@@ -1,12 +1,13 @@
 package taskList;
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+import exceptions.EmptyTaskListException;
+import exceptions.InvalidTaskNumberException;
+import exceptions.RepeatedTaskUpdateException;
 import task.DeadlineTask;
 import task.EventTask;
 import task.Task;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import exceptions.InvalidTaskNumberException;
-import exceptions.EmptyTaskListException;
-import exceptions.RepeatedTaskUpdateException;
 
 public class TaskList {
 
@@ -42,8 +43,8 @@ public class TaskList {
         if (num - 1 < 0 || num - 1 >= this.tasks.size()) {
             throw new InvalidTaskNumberException();
         }
-        Task target = this.tasks.get(num-1);
-        this.tasks.remove(num-1); // which might be faster
+        Task target = this.tasks.get(num - 1);
+        this.tasks.remove(num - 1); // which might be faster
         String defMsg = "Noted. I've removed this task:\n\t";
         return defMsg + target.toString() + "\n";
     }
@@ -55,7 +56,7 @@ public class TaskList {
         } else if (this.tasks.get(num - 1).getStatus()) {
             throw new RepeatedTaskUpdateException();
         }
-        Task target = this.tasks.get(num-1);
+        Task target = this.tasks.get(num - 1);
         target.markDone();
         return "Nice! I've marked this task as done: \n\t" + target.toString() + "\n";
     }
@@ -67,7 +68,7 @@ public class TaskList {
         } else if (!this.tasks.get(num - 1).getStatus()) {
             throw new RepeatedTaskUpdateException();
         }
-        Task target = this.tasks.get(num-1);
+        Task target = this.tasks.get(num - 1);
         target.unmark();
         return "OK, I've marked this task as not done yet: \n\t" + target.toString() + "\n";
     }
@@ -86,7 +87,7 @@ public class TaskList {
         taskList.append("Here are the tasks in your list:\n");
         for (int i = 0; i < this.tasks.size(); ++i) {
             // change to 1 indexed
-            String entry = (i+1) + "." + this.tasks.get(i).toString() + "\n";
+            String entry = (i + 1) + "." + this.tasks.get(i).toString() + "\n";
             taskList.append(entry);
         }
 
@@ -105,7 +106,7 @@ public class TaskList {
         taskList.append("Here are the tasks found:\n");
         for (int i = 0; i < listOfTasks.size(); ++i) {
             // change to 1 indexed
-            String entry = (i+1) + "." + listOfTasks.get(i).toString() + "\n";
+            String entry = (i + 1) + "." + listOfTasks.get(i).toString() + "\n";
             taskList.append(entry);
         }
 
@@ -113,8 +114,8 @@ public class TaskList {
     }
 
     public String findTasksByDate(LocalDate date) {
-//        System.out.println("Check running");
-//        System.out.println("Query: " + date);
+        // System.out.println("Check running");
+        // System.out.println("Query: " + date);
         ArrayList<Task> matched = new ArrayList<>();
 
         for (Task task : this.tasks) {
@@ -122,36 +123,38 @@ public class TaskList {
                 LocalDate taskDate = ((DeadlineTask) task).getLocalDate();
 
                 if (taskDate == null) {
-//                    System.out.println("DeadlineTask has null date. Skipping...");
-                    continue;  // skip this task
+                    //System.out.println("DeadlineTask has null date. Skipping...");
+                    continue; // Skip this task
                 }
 
-//                System.out.println("Checking~~~~~~~~~~~ : " + taskDate);
+                // System.out.println("Checking~~~~~~~~~~~ : " + taskDate);
                 if (taskDate.toString().trim().equals(date.toString().trim())) {
                     matched.add(task);
-//                    System.out.println("Added something from Deadline");
+                    // System.out.println("Added something from Deadline");
                 }
             } else if (task instanceof EventTask) {
                 LocalDate eventDate = ((EventTask) task).getStartLocalDate();
                 LocalDate eventEndDate = ((EventTask) task).getEndLocalDate();
 
                 if (eventDate == null && eventEndDate == null) {
-//                    System.out.println("Skipping EventTask due to null start and end dates.");
+                    // System.out.println("Skipping EventTask due to null start and end dates.");
                     continue;
                 }
 
                 // Match conditions:
-                boolean startMatches = (eventDate != null && eventDate.toString().trim().equals(date.toString().trim()));
-                boolean endMatches = (eventEndDate != null && eventEndDate.toString().trim().equals(date.toString().trim()));
+                boolean startMatches = (eventDate != null
+                        && eventDate.toString().trim().equals(date.toString().trim()));
+                boolean endMatches = (eventEndDate != null
+                        && eventEndDate.toString().trim().equals(date.toString().trim()));
 
                 // Add to matched list if either start or end date matches
                 if (startMatches || endMatches) {
                     matched.add(task);
-//                    System.out.println("EventTask matched and added!");
+                    // System.out.println("EventTask matched and added!");
                 }
             }
         }
-//        System.out.println("Matched Tasks: " + matched.size());
+        // System.out.println("Matched Tasks: " + matched.size());
         return printTask(matched);
     }
 

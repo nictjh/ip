@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
-public class DeadlineTask extends Task{
+public class DeadlineTask extends Task {
 
 
     private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM d yyyy h:mm a");
@@ -19,7 +19,7 @@ public class DeadlineTask extends Task{
         DateTimeFormatter.ofPattern("dd/M/yyyy HHmm"),
     };
     private final String deadline;
-    protected LocalDateTime by;
+    private LocalDateTime by;
 
     public DeadlineTask(String desc, String deadline) {
         super(desc);
@@ -85,7 +85,7 @@ public class DeadlineTask extends Task{
     public String toString() {
         String deadLineID = "[D]";
         String formattedDateTime = (this.by != null) ? formatOutputDateTime(this.by) : "";
-        return deadLineID + super.toString() + "(by: " + ((!formattedDateTime.isEmpty()) ? formattedDateTime : this.deadline)  + ")";
+        return deadLineID + super.toString()
+                + "(by: " + ((!formattedDateTime.isEmpty()) ? formattedDateTime : this.deadline) + ")";
     }
-
 }

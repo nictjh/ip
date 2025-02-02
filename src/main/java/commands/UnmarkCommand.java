@@ -12,7 +12,8 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public void execute(Solace solace) throws InvalidTaskNumberException, RepeatedTaskUpdateException, RepeatedTaskUpdateException, InvalidTaskNumberException {
+    public void execute(Solace solace) throws InvalidTaskNumberException, RepeatedTaskUpdateException,
+            RepeatedTaskUpdateException, InvalidTaskNumberException {
         String status = solace.getTaskList().unmarkTask(index);
         Ui ui = solace.getUi();
         ui.printMessage(status);

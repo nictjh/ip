@@ -1,9 +1,9 @@
 package commands;
 import app.Solace;
-import taskList.TaskList;
-import ui.Ui;
 import exceptions.InvalidTaskNumberException;
 import exceptions.RepeatedTaskUpdateException;
+import taskList.TaskList;
+import ui.Ui;
 
 public class MarkCommand extends Command {
     private int index;

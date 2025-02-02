@@ -1,9 +1,10 @@
 package commands;
-import app.Solace;
-import ui.Ui;
-import storage.Storage;
-import java.io.IOException;
 import java.io.File;
+import java.io.IOException;
+
+import app.Solace;
+import storage.Storage;
+import ui.Ui;
 
 public class SaveCommand extends Command {
 
