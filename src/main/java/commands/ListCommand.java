@@ -1,7 +1,12 @@
 package commands;
 import ui.Ui;
 
+/**
+ * Represents the command to list all tasks in the task list
+ *
+ */
 public class ListCommand extends Command {
+
     @Override
     public void execute(app.Solace solace) {
         Ui ui = solace.getUi();

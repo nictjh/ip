@@ -5,11 +5,20 @@ import storage.Storage;
 import java.io.IOException;
 import java.io.File;
 
+/**
+ * Represents the command to save the task list to a .txt file
+ *
+ */
 public class SaveCommand extends Command {
 
     private String filePath;
     private final String FILE_NAME = "taskList.txt";
 
+    /**
+     * Creates a new SaveCommand object
+     *
+     * @param filePath the file path to save the task list
+     */
     public SaveCommand(String filePath) {
         this.filePath = filePath;
     }

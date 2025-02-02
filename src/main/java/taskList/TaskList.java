@@ -8,15 +8,29 @@ import exceptions.InvalidTaskNumberException;
 import exceptions.EmptyTaskListException;
 import exceptions.RepeatedTaskUpdateException;
 
+/**
+ * Represents a list of tasks, to be initialized in Solace
+ * Contains methods to manipulate the list of tasks
+ *
+ */
 public class TaskList {
 
     private final ArrayList<Task> tasks;
 
+    /**
+     * Creates an empty new TaskList
+     * Default constructor
+     */
     public TaskList() {
         this.tasks = new ArrayList<>(100);
     }
 
-    // Overloaded constructor to take in ArrayList of tasks
+    /**
+     * Creates a new TaskList with a list of tasks
+     * Overloaded constructor
+     *
+     * @param tasks List of tasks
+     */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
@@ -29,12 +43,26 @@ public class TaskList {
         return this.tasks.get(index);
     }
 
+    /**
+     * Adds a task to the list
+     *
+     * @param task the Task object to be added
+     * @return A String message indicating the task has been added
+     */
     public String addTask(Task task) {
         this.tasks.add(task);
         String defMsg = "Got it. I've added this task:\n\t";
         return defMsg + task.toString() + "\n";
     }
 
+    /**
+     * Removes a task from the list
+     *
+     * @param num The index of the task to be removed, this is 1-indexed
+     * @return A String message indicating the task has been removed
+     * @throws InvalidTaskNumberException InvalidTaskNumberException If the task number is invalid
+     * @throws EmptyTaskListException EmptyTaskListException If the task list is empty
+     */
     public String removeTask(int num) throws InvalidTaskNumberException, EmptyTaskListException {
         if (this.tasks.isEmpty()) {
             throw new EmptyTaskListException();
@@ -48,6 +76,14 @@ public class TaskList {
         return defMsg + target.toString() + "\n";
     }
 
+    /**
+     * Marks a task as done
+     *
+     * @param num The index of the task to be marked as done, this is 1-indexed
+     * @return A String message indicating the task has been marked as done
+     * @throws InvalidTaskNumberException InvalidTaskNumberException If the task number is invalid
+     * @throws RepeatedTaskUpdateException RepeatedTaskUpdateException If the task is already marked as done
+     */
     public String markTask(int num) throws InvalidTaskNumberException, RepeatedTaskUpdateException {
         // Error handling
         if (num - 1 < 0 || num - 1 >= this.tasks.size()) {
@@ -60,6 +96,14 @@ public class TaskList {
         return "Nice! I've marked this task as done: \n\t" + target.toString() + "\n";
     }
 
+    /**
+     * Unmarks a task as done
+     *
+     * @param num The index of the task to be unmarked as done, this is 1-indexed
+     * @return A String message indicating the task has been unmarked as done
+     * @throws InvalidTaskNumberException InvalidTaskNumberException If the task number is invalid
+     * @throws RepeatedTaskUpdateException RepeatedTaskUpdateException If the task is already marked as not done
+     */
     public String unmarkTask(int num) throws InvalidTaskNumberException, RepeatedTaskUpdateException {
         // Error handling
         if (num - 1 < 0 || num - 1 >= this.tasks.size()) {
@@ -76,6 +120,11 @@ public class TaskList {
         return "Now you have " + this.tasks.size() + " tasks in the list.\n";
     }
 
+    /**
+     * Prints the list of tasks to be displayed in 1-indexed format
+     *
+     * @return A String message containing the list of tasks
+     */
     public String printTasks() {
         StringBuilder taskList = new StringBuilder();
 
@@ -93,7 +142,13 @@ public class TaskList {
         return taskList.toString();
     }
 
-    //Overloaded method
+    /**
+     * Prints the list of tasks to be displayed in 1-indexed format
+     * Overloaded method to print from specific ArrayList
+     *
+     * @param listOfTasks The ArrayList<Task> to be printed
+     * @return A String message containing the list of tasks
+     */
     public String printTask(ArrayList<Task> listOfTasks) {
 
         StringBuilder taskList = new StringBuilder();
@@ -112,6 +167,12 @@ public class TaskList {
         return taskList.toString();
     }
 
+    /**
+     * Finds tasks that match the date provided
+     *
+     * @param date The date to be matched
+     * @return A String message containing the list of tasks that match the date
+     */
     public String findTasksByDate(LocalDate date) {
 //        System.out.println("Check running");
 //        System.out.println("Query: " + date);

@@ -7,14 +7,28 @@ import task.ToDoTask;
 import taskList.TaskList;
 import task.Task;
 
+/**
+ * Handles reading from and writing to the task storage file
+ * The file is stored in the specified file path
+ */
 public class Storage {
 
     private final String filePath;
 
+    /**
+     * Initializes the storage object with the specified file path
+     *
+     * @param filePath The file path to store the task list
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads the task list from the storage file
+     *
+     * @return The TaskList object loaded from the storage file
+     */
     public TaskList load() {
         ArrayList<Task> newTask = new ArrayList<Task>(100);
         File file = new File(this.filePath + File.separator + "taskList.txt");
@@ -45,6 +59,12 @@ public class Storage {
         return new TaskList(newTask);
     }
 
+    /**
+     * Saves the task list to the storage file in .txt
+     *
+     * @param taskList The TaskList object to be saved
+     * @throws IOException If an error occurs while saving the task list
+     */
     public void save(TaskList taskList) throws IOException{
         ArrayList<Task> tasks = taskList.getList();
         File file = new File(filePath + File.separator + "taskList.txt");
@@ -54,7 +74,7 @@ public class Storage {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             int index = 1;
             for (Task task : tasks) {
-                writer.write(convertTaskToCommand(task, index));
+                writer.write(convertTaskToCommand(task));
                 writer.newLine();
                 if (task.getStatus()) {
                     writer.write("mark " + index);
@@ -69,7 +89,14 @@ public class Storage {
     }
 
 
-    private static String convertTaskToCommand(Task task, int index) {
+    /**
+     * Converts a task object to a command string
+     * Save command string for easy loading
+     *
+     * @param task The task object to be converted
+     * @return The command string representing the task
+     */
+    private static String convertTaskToCommand(Task task) {
         if (task instanceof ToDoTask) {
             return "todo " + task.getDescription();
         } else if (task instanceof DeadlineTask) {

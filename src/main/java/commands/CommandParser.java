@@ -4,10 +4,20 @@ import exceptions.MissingDeadlineDetailsException;
 import exceptions.MissingEventDetailsException;
 import exceptions.MissingToDoDescException;
 
+/**
+ * Parses user input and returns the corresponding Command object
+ *
+ */
 public class CommandParser {
 
     private static final String FILE_PATH = "bin/storage";
 
+    /**
+     * Extracts the description from the input array
+     *
+     * @param entryArray The array of strings from the user input
+     * @return The full description of the task including the deadlines or event timings
+     */
     private static String extractDescription(String[] entryArray) {
         StringBuilder desc = new StringBuilder();
         for (int i = 1; i < entryArray.length; ++i) {
@@ -16,13 +26,26 @@ public class CommandParser {
         return desc.toString().trim();
     }
 
+    /**
+     * Validates the number of arguments in the command
+     *
+     * @param args The array of strings from the user input
+     * @param requiredNum The number of arguments required for the command
+     * @throws MissingArgumentException If the number of arguments is less than the required number
+     */
     private static void validateArguments(String[] args, int requiredNum) throws MissingArgumentException {
         if (args.length < requiredNum) {
             throw new MissingArgumentException("Missing arguments in command, please try again with a number behind.");
         }
     }
 
-    // returns Command to be executed in app.Solace
+    /**
+     * Parses the user input and returns the corresponding Command object
+     *
+     * @param input The user input
+     * @return Command object corresponding to the user input
+     * @throws MissingArgumentException If the user input is missing arguments
+     */
     public static Command parse(String input) throws MissingArgumentException {
         String[] inputArray = input.split(" ");
         String command = inputArray[0]; // Getting the commandType

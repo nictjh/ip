@@ -3,12 +3,23 @@ import app.Solace;
 import ui.Ui;
 import task.EventTask;
 
+/**
+ * Represents the command to create an event task
+ *
+ */
 public class CreateEventCommand extends Command {
 
     private String description;
     private String from;
     private String to;
 
+    /**
+     * Creates a new CreateEventCommand object
+     *
+     * @param description The description of the event task
+     * @param from The starting date and time of the event task (formatted as "dd/MM/yyyy HHmm") or String
+     * @param to The ending date and time of the event task (formatted as "dd/MM/yyyy HHmm") or String
+     */
     public CreateEventCommand(String description, String from, String to) {
         this.description = description;
         this.from = from;

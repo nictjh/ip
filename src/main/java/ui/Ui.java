@@ -1,8 +1,12 @@
 package ui;
 import java.util.Scanner;
 
-// This Ui Class will handle all the input/output of the program
+/**
+ * Represents the User Interface of the application
+ * Handles all input and output of the application
+ */
 public class Ui {
+
     private static final String dividerLine = "--------------------------------------";
     private static final String logo =
             "  _____       _\n"
@@ -12,6 +16,9 @@ public class Ui {
             + " ____) | (_) | | (_| | (_|  __/\n"
             + "|_____/ \\___/|_|\\__,_|\\___\\___|\n";
 
+    /**
+     * Creates a new User Interface
+     */
     public Ui() {
         System.out.println(logo);
         System.out.println("Hello! I'm app.Solace\nWhat can I do for you?\n" + this.getDividerLine());
@@ -21,10 +28,21 @@ public class Ui {
         return dividerLine;
     }
 
+    /**
+     * Reads the next command from the user
+     *
+     * @param sc Scanner object to read input
+     * @return The next command from the user in a String format
+     */
     public String readCommand(Scanner sc) {
         return sc.nextLine();
     }
 
+    /**
+     * Prints the message to the user display
+     *
+     * @param message The message to be printed
+     */
     public void printMessage(String message) {
         System.out.println(message + "\n" + this.getDividerLine());
     }

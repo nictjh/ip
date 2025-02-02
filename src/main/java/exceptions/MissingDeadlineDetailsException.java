@@ -1,5 +1,8 @@
 package exceptions;
 
+/**
+ * Represents an exception thrown when the deadline details are missing
+ */
 public class MissingDeadlineDetailsException extends MissingArgumentException {
 
     public MissingDeadlineDetailsException() {

@@ -1,13 +1,24 @@
 package commands;
+
 import app.Solace;
 import taskList.TaskList;
 import ui.Ui;
+
 import exceptions.InvalidTaskNumberException;
 import exceptions.RepeatedTaskUpdateException;
 
+/**
+ * Represents the command to mark a task as done
+ */
 public class MarkCommand extends Command {
-    private int index;
 
+    private final int index;
+
+    /**
+     * Creates a new MarkCommand object
+     *
+     * @param index The index of the task to be marked as done, should be 1-indexed
+     */
     public MarkCommand(int index) {
         this.index = index;
     }
@@ -19,6 +30,14 @@ public class MarkCommand extends Command {
         ui.printMessage(status);
     }
 
+    /**
+     * Executes the command to mark a task as done
+     * for testing purposes
+     *
+     * @param tasklist The tasklist to mark the task as done
+     * @throws InvalidTaskNumberException If the task number is invalid or out of range
+     * @throws RepeatedTaskUpdateException If the task is already marked as done
+     */
     public void execute(TaskList tasklist) throws InvalidTaskNumberException, RepeatedTaskUpdateException {
         String status = tasklist.markTask(index);
     }

@@ -3,10 +3,19 @@ import app.Solace;
 import ui.Ui;
 import task.ToDoTask;
 
+/**
+ * Represents the command to create a new ToDo task
+ *
+ */
 public class CreateToDoCommand extends Command {
 
     private String description;
 
+    /**
+     * Creates a new CreateToDoCommand object
+     *
+     * @param description Description of the ToDo task
+     */
     public CreateToDoCommand(String description) {
         this.description = description;
     }

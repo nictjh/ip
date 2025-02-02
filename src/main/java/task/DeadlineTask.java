@@ -5,8 +5,11 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
+/**
+ * Represents a task with a deadline
+ * Contains a description and a deadline
+ */
 public class DeadlineTask extends Task{
-
 
     private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM d yyyy h:mm a");
     private static final DateTimeFormatter[] INPUT_FORMATS = new DateTimeFormatter[] {
@@ -21,6 +24,12 @@ public class DeadlineTask extends Task{
     private final String deadline;
     protected LocalDateTime by;
 
+    /**
+     * Creates a new DeadlineTask object
+     *
+     * @param desc Description of the task
+     * @param deadline Deadline of the task
+     */
     public DeadlineTask(String desc, String deadline) {
         super(desc);
         this.deadline = deadline.trim();
@@ -31,6 +40,12 @@ public class DeadlineTask extends Task{
         }
     }
 
+    /**
+     * Parses a string input into a LocalDateTime object
+     *
+     * @param input String input to be parsed, the deadline specifically
+     * @return LocalDateTime object parsed from the input
+     */
     private static LocalDateTime parseDateTime(String input) {
         for (DateTimeFormatter format : INPUT_FORMATS) {
             try {
@@ -44,6 +59,12 @@ public class DeadlineTask extends Task{
         return null;
     }
 
+    /**
+     * Formats a LocalDateTime object into a string to be outputted
+     *
+     * @param dateTime LocalDateTime object to be formatted
+     * @return String representation of the LocalDateTime object in the format "MMM d yyyy h:mm a"
+     */
     private static String formatOutputDateTime(LocalDateTime dateTime) {
         if (dateTime == null) {
             return "";
@@ -66,7 +87,11 @@ public class DeadlineTask extends Task{
         return this.deadline;
     }
 
-    // Need to account this for in the save Command too
+    /**
+     * Writes the deadline in a format that can be saved to a file
+     *
+     * @return The String representation of the deadline
+     */
     public String writeDateTime() {
         if (this.by == null) {
             return "";

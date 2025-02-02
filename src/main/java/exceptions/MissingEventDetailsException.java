@@ -1,5 +1,8 @@
 package exceptions;
 
+/**
+ * Represents an exception thrown when the event details are missing
+ */
 public class MissingEventDetailsException extends MissingArgumentException {
 
     public MissingEventDetailsException() {

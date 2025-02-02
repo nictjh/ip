@@ -1,11 +1,13 @@
 package commands;
 import app.Solace;
+
 import exceptions.UnknownCommandException;
 
+/**
+ * Represents an unknown command
+ *
+ */
 public class UnknownCommand extends Command {
-
-    public UnknownCommand() {
-    }
 
     @Override
     public void execute(Solace solace) throws UnknownCommandException {
