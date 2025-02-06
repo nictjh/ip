@@ -51,54 +51,54 @@ public class CommandParser {
         String command = inputArray[0]; // Getting the commandType
 
         switch (command) {
-            case "bye":
-                return new ExitCommand();
-            case "list":
-                return new ListCommand();
-            case "mark":
-                validateArguments(inputArray, 2);
-                return new MarkCommand(Integer.parseInt(inputArray[1]));
-            case "unmark":
-                validateArguments(inputArray, 2);
-                return new UnmarkCommand(Integer.parseInt(inputArray[1]));
-            case "todo":
-                if (inputArray.length < 2) {
-                    throw new MissingToDoDescException();
-                }
-                String toDoDesc = extractDescription(inputArray);
-                return new CreateToDoCommand(toDoDesc);
-            case "deadline":
-                if (inputArray.length < 2 || !input.contains("/by")) {
-                    throw new MissingDeadlineDetailsException();
-                }
-                String deadlineDesc = extractDescription(inputArray);
-                String dDesc = deadlineDesc.substring(0, deadlineDesc.indexOf("/by"));
-                String by = deadlineDesc.substring(deadlineDesc.indexOf("/by") + 4);
-                return new CreateDeadlineCommand(dDesc, by);
-            case "event":
-                if (inputArray.length < 2 || !input.contains("/from") || !input.contains("/to")) {
-                    throw new MissingEventDetailsException();
-                }
-                String eventDesc = extractDescription(inputArray);
-                String eDesc = eventDesc.substring(0, eventDesc.indexOf("/from"));
-                String from = eventDesc.substring(eventDesc.indexOf("/from") + 6, eventDesc.indexOf("/to"));
-                String to = eventDesc.substring(eventDesc.indexOf("/to") + 4);
-                return new CreateEventCommand(eDesc, from, to);
-            case "delete":
-                validateArguments(inputArray, 2);
-                int deleteIndex = Integer.parseInt(inputArray[1]);
-                return new DeleteTaskCommand(deleteIndex);
-            case "findDate":
-                validateArguments(inputArray, 2);
-                String findString = inputArray[1];
-                return new FindDateCommand(findString);
-            case "find":
-                String desc = extractDescription(inputArray);
-                return new FindCommand(desc);
-            case "save":
-                return new SaveCommand(FILE_PATH);
-            default:
-                return new UnknownCommand(); // throws error need to be caught in app.Solace
+        case "bye":
+            return new ExitCommand();
+        case "list":
+            return new ListCommand();
+        case "mark":
+            validateArguments(inputArray, 2);
+            return new MarkCommand(Integer.parseInt(inputArray[1]));
+        case "unmark":
+            validateArguments(inputArray, 2);
+            return new UnmarkCommand(Integer.parseInt(inputArray[1]));
+        case "todo":
+            if (inputArray.length < 2) {
+                throw new MissingToDoDescException();
+            }
+            String toDoDesc = extractDescription(inputArray);
+            return new CreateToDoCommand(toDoDesc);
+        case "deadline":
+            if (inputArray.length < 2 || !input.contains("/by")) {
+                throw new MissingDeadlineDetailsException();
+            }
+            String deadlineDesc = extractDescription(inputArray);
+            String dDesc = deadlineDesc.substring(0, deadlineDesc.indexOf("/by"));
+            String by = deadlineDesc.substring(deadlineDesc.indexOf("/by") + 4);
+            return new CreateDeadlineCommand(dDesc, by);
+        case "event":
+            if (inputArray.length < 2 || !input.contains("/from") || !input.contains("/to")) {
+                throw new MissingEventDetailsException();
+            }
+            String eventDesc = extractDescription(inputArray);
+            String eDesc = eventDesc.substring(0, eventDesc.indexOf("/from"));
+            String from = eventDesc.substring(eventDesc.indexOf("/from") + 6, eventDesc.indexOf("/to"));
+            String to = eventDesc.substring(eventDesc.indexOf("/to") + 4);
+            return new CreateEventCommand(eDesc, from, to);
+        case "delete":
+            validateArguments(inputArray, 2);
+            int deleteIndex = Integer.parseInt(inputArray[1]);
+            return new DeleteTaskCommand(deleteIndex);
+        case "findDate":
+            validateArguments(inputArray, 2);
+            String findString = inputArray[1];
+            return new FindDateCommand(findString);
+        case "find":
+            String desc = extractDescription(inputArray);
+            return new FindCommand(desc);
+        case "save":
+            return new SaveCommand(FILE_PATH);
+        default:
+            return new UnknownCommand(); // throws error need to be caught in app.Solace
         }
     }
 }

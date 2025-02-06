@@ -19,7 +19,7 @@ public class Task {
         this.isDone = false;
     }
 
-    public boolean getStatus() {
+    public boolean showStatus() {
         return isDone;
     }
 

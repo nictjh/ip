@@ -82,7 +82,7 @@ public class Storage {
             for (Task task : tasks) {
                 writer.write(convertTaskToCommand(task));
                 writer.newLine();
-                if (task.getStatus()) {
+                if (task.showStatus()) {
                     writer.write("mark " + index);
                     writer.newLine();
                 }

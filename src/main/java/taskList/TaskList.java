@@ -89,7 +89,7 @@ public class TaskList {
         // Error handling
         if (num - 1 < 0 || num - 1 >= this.tasks.size()) {
             throw new InvalidTaskNumberException();
-        } else if (this.tasks.get(num - 1).getStatus()) {
+        } else if (this.tasks.get(num - 1).showStatus()) {
             throw new RepeatedTaskUpdateException();
         }
         Task target = this.tasks.get(num - 1);
@@ -109,7 +109,7 @@ public class TaskList {
         // Error handling
         if (num - 1 < 0 || num - 1 >= this.tasks.size()) {
             throw new InvalidTaskNumberException();
-        } else if (!this.tasks.get(num - 1).getStatus()) {
+        } else if (!this.tasks.get(num - 1).showStatus()) {
             throw new RepeatedTaskUpdateException();
         }
         Task target = this.tasks.get(num - 1);

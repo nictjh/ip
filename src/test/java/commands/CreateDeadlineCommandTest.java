@@ -22,7 +22,7 @@ public class CreateDeadlineCommandTest {
     }
 
     @Test
-    void testCreateDeadlineCommand() {
+    void createDeadlineCommand_validInput_addsDeadlineTaskToList() {
         CreateDeadlineCommand createDeadlineCommand = new CreateDeadlineCommand("read book ", "01/02/2025 1800");
         String statusMsg = createDeadlineCommand.execute(this.tasklist);
 
@@ -34,7 +34,7 @@ public class CreateDeadlineCommandTest {
     }
 
     @Test
-    void testCreateMultipleDeadlines() {
+    void createDeadlineCommand_multipleDeadlines_addsAllToList() {
         new CreateDeadlineCommand("read book", "01/02/2025 1800").execute(this.tasklist);
         new CreateDeadlineCommand("gym", "02/02/2025 1000").execute(this.tasklist);
 
@@ -43,7 +43,7 @@ public class CreateDeadlineCommandTest {
     }
 
     @Test
-    void testDeadlineDateFormatting() {
+    void createDeadlineCommand_validDateFormat_formatsDeadlineCorrectly() {
         CreateDeadlineCommand createDeadlineCommand = new CreateDeadlineCommand("Submit report", "05/02/2025 1730");
         String statusMsg = createDeadlineCommand.execute(this.tasklist);
 
