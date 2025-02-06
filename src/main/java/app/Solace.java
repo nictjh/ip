@@ -20,10 +20,10 @@ import ui.Ui;
 public class Solace {
 
     private static boolean isAlive;
-    private final TaskList TASKLIST;
-    private final String FILE_PATH = "bin/storage";
+    private final TaskList taskList;
+    private final String filePath = "bin/storage";
     private static Ui UI;
-    private final Storage STORAGE;
+    private final Storage storage;
 
     /**
      * Creates a new Solace application
@@ -32,8 +32,8 @@ public class Solace {
     public Solace() {
         UI = new Ui();
         isAlive = true;
-        this.STORAGE = new Storage(FILE_PATH);
-        this.TASKLIST = STORAGE.load();
+        this.storage = new Storage(filePath);
+        this.taskList = storage.load();
     }
 
     public Ui getUi() {
@@ -41,7 +41,7 @@ public class Solace {
     }
 
     public Storage getStorage() {
-        return this.STORAGE;
+        return this.storage;
     }
 
     public void setAlive() {
@@ -51,7 +51,7 @@ public class Solace {
 
     public TaskList getTaskList() {
         // Getter function
-        return this.TASKLIST;
+        return this.taskList;
     }
 
     /**

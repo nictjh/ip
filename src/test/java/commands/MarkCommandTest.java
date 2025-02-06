@@ -3,7 +3,6 @@ import exceptions.InvalidTaskNumberException;
 import exceptions.RepeatedTaskUpdateException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import commands.MarkCommand;
 import taskList.TaskList;
 import task.ToDoTask;
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,19 +22,19 @@ public class MarkCommandTest {
     }
 
     @Test
-    void testMarkDoneCommand() throws RepeatedTaskUpdateException, InvalidTaskNumberException {
+    void markCommand_validTask_marksTaskAsDone() throws RepeatedTaskUpdateException, InvalidTaskNumberException {
         //Verify of task 1 @start
-        assertFalse(this.tasklist.getTask(0).getStatus(), "Task 1 should not be marked done initially");
+        assertFalse(this.tasklist.getTask(0).showStatus(), "Task 1 should not be marked done initially");
 
         MarkCommand markCommand = new MarkCommand(1); // marks the first task
         markCommand.execute(this.tasklist);
 
         //Verify status of task 1
-        assertTrue(this.tasklist.getTask(0).getStatus(), "Task 1 should be marked done");
+        assertTrue(this.tasklist.getTask(0).showStatus(), "Task 1 should be marked done");
     }
 
     @Test
-    void testMarkInvalidIndex() {
+    void markCommand_invalidIndex_throwsInvalidTaskNumberException() {
         // Test for negative index
         Exception negativeIndexException = assertThrows(InvalidTaskNumberException.class, () -> {
             new MarkCommand(0).execute(this.tasklist);
@@ -54,7 +53,7 @@ public class MarkCommandTest {
     }
 
     @Test
-    void testMarkAlreadyDoneTask() {
+    void markCommand_alreadyMarkedTask_throwsRepeatedTaskUpdateException() {
         // Mark the first task
         assertDoesNotThrow(() -> new MarkCommand(2).execute(this.tasklist));
 
