@@ -1,0 +1,61 @@
+/* (MainWindow) */
+.root {
+    -fx-font-family: "Arial";
+    -fx-background-color: #343541;
+}
+
+#scrollPane {
+    -fx-background: transparent;
+    -fx-border-color: #444654;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+}
+
+#userInput {
+    -fx-background-color: #40414F;
+    -fx-text-fill: white;
+    -fx-border-color: #565869;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    /*-fx-padding: 10px;*/
+    -fx-alignment: center;
+}
+
+#sendButton {
+    -fx-background-color: #10a37f;
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+}
+#sendButton:hover {
+    -fx-background-color: #0f8064;
+}
+
+.dialog-box {
+    -fx-padding: 10px;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 2, 2);
+}
+
+.user-message {
+    -fx-background-color: #10a37f;
+    -fx-text-fill: white;
+    -fx-border-color: #0f8064;
+    -fx-padding: 10px;
+    -fx-alignment: CENTER_RIGHT;
+    -fx-margin-left: auto;
+}
+
+.bot-message {
+    -fx-background-color: #444654;
+    -fx-text-fill: white;
+    -fx-border-color: #5b5d69;
+    -fx-padding: 10px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-margin-right: auto;
+}
+
+.hbox {
+    -fx-padding: 10px;
+}

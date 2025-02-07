@@ -21,7 +21,7 @@ public class Ui {
      */
     public Ui() {
         System.out.println(logo);
-        System.out.println("Hello! I'm app.Solace\nWhat can I do for you?\n" + this.getDividerLine());
+        System.out.println("Hello! I'm Solace\nWhat can I do for you?\n" + this.getDividerLine());
     }
 
     public String getDividerLine() {

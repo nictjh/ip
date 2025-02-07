@@ -5,19 +5,33 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="app.MainWindow">
-    <children>
-        <VBox alignment="CENTER" spacing="10" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0">
-            <ScrollPane fx:id="scrollPane" fitToWidth="true" prefHeight="400.0" prefWidth="300.0">
-                <content>
-                    <VBox fx:id="dialogContainer" spacing="10" />
-                </content>
-            </ScrollPane>
-            <HBox spacing="10">
-                <TextField fx:id="userInput" promptText="Type your message..." />
-                <Button fx:id="sendButton" text="Send" onAction="#handleUserInput" />
-            </HBox>
-        </VBox>
-    </children>
+            fx:controller="app.MainWindow"
+            stylesheets="@styles.css"
+            prefWidth="400" prefHeight="600">
+
+    <!-- Chat Display (Scrollable) -->
+    <ScrollPane fx:id="scrollPane" fitToWidth="true"
+                hbarPolicy="NEVER" vbarPolicy="ALWAYS"
+                AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"
+                AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="50">
+        <content>
+            <VBox fx:id="dialogContainer" spacing="10"
+                  prefWidth="385" />
+        </content>
+    </ScrollPane>
+
+    <!-- Input Box (TextField + Send Button) -->
+    <HBox spacing="10" alignment="CENTER" styleClass="hbox"
+          AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0"
+          AnchorPane.rightAnchor="1.0">
+
+        <!-- Expanding TextField -->
+        <TextField fx:id="userInput" promptText="Type a message..."
+                   HBox.hgrow="ALWAYS" />
+
+        <!-- Fixed-size Send Button -->
+        <Button fx:id="sendButton" text="Send" prefWidth="55"
+                onAction="#handleUserInput"/>
+    </HBox>
+
 </AnchorPane>

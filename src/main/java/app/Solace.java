@@ -66,6 +66,7 @@ public class Solace extends Application {
             AnchorPane root = fxmlLoader.load();
             Scene scene = new Scene(root);
             stage.setTitle("Solace Chatbot");
+
             stage.setScene(scene);
             stage.show();
 
@@ -90,34 +91,34 @@ public class Solace extends Application {
         }
     }
 
-    /**
-     * Main entry to the application
-     * Handles user input and executes commands until program exits
-     * @param args Not used
-     */
-//    public static void main(String[] args) {
-//        Solace solace = new Solace();
-//        Scanner input = new Scanner(System.in);
-//
-//        while (isAlive) {
-//
-//            try {
-//
-//                if (!input.hasNextLine()) {
-//                    break; //Fixing bug when there is no line to read but below call nextLine
-//                }
-//
-//                String userInput = UI.readCommand(input);
-//                Command command = CommandParser.parse(userInput);
-//                command.execute(solace);
-//
-//            } catch (MissingArgumentException | UnknownCommandException | InvalidTaskNumberException
-//                     | RepeatedTaskUpdateException | EmptyTaskListException e) {
-//                UI.printMessage(e.getMessage() + "\n");
-//            } catch (Exception e) {
-//                UI.printMessage("An error occurred: " + e.getMessage());
-//            }
-//        }
-//        input.close();
-//    }
+    // /**
+    //  * Main entry to the application
+    //  * Handles user input and executes commands until program exits
+    //  * @param args Not used
+    //  */
+    // public static void main(String[] args) {
+        // Solace solace = new Solace();
+        // Scanner input = new Scanner(System.in);
+
+        // while (isAlive) {
+
+            // try {
+
+                // if (!input.hasNextLine()) {
+                    // break; //Fixing bug when there is no line to read but below call nextLine
+                // }
+
+                // String userInput = UI.readCommand(input);
+                // Command command = CommandParser.parse(userInput);
+                // command.execute(solace);
+
+            //} catch (MissingArgumentException | UnknownCommandException | InvalidTaskNumberException
+                     // | RepeatedTaskUpdateException | EmptyTaskListException e) {
+                // UI.printMessage(e.getMessage() + "\n");
+            // } catch (Exception e) {
+                // UI.printMessage("An error occurred: " + e.getMessage());
+            // }
+        // }
+        // input.close();
+    // }
 }
