@@ -1,4 +1,7 @@
 package commands;
+
+import java.util.ArrayList;
+
 import app.Solace;
 import exceptions.InvalidTaskNumberException;
 import exceptions.RepeatedTaskUpdateException;
@@ -10,20 +13,24 @@ import ui.Ui;
  */
 public class MarkCommand extends Command {
 
-    private final int index;
+    // private final int index;
+    private ArrayList<Integer> indexes;
 
     /**
      * Creates a new MarkCommand object
      *
-     * @param index The index of the task to be marked as done, should be 1-indexed
+     * @param indexes The indexes of the task to be marked as done, should be 1-indexed
      */
-    public MarkCommand(int index) {
-        this.index = index;
+    public MarkCommand(int ... indexes) {
+        this.indexes = new ArrayList<>();
+        for (int i : indexes) {
+            this.indexes.add(i);
+        }
     }
 
     @Override
     public String execute(Solace solace) throws InvalidTaskNumberException, RepeatedTaskUpdateException {
-        String status = solace.getTaskList().markTask(index);
+        String status = solace.getTaskList().markTask(indexes);
         Ui ui = solace.getUi();
         ui.printMessage(status);
         return status;
@@ -38,7 +45,7 @@ public class MarkCommand extends Command {
      * @throws RepeatedTaskUpdateException If the task is already marked as done
      */
     public String execute(TaskList tasklist) throws InvalidTaskNumberException, RepeatedTaskUpdateException {
-        String status = tasklist.markTask(index);
+        String status = tasklist.markTask(indexes);
         return status;
     }
 
