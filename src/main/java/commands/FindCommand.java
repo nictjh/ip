@@ -12,10 +12,11 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(Solace solace) {
+    public String execute(Solace solace) {
         Ui ui = solace.getUi();
         TaskList taskList = solace.getTaskList(); // get TaskList from Solace
         String statusMsg = taskList.findTasksByKeyword(this.keyword);
         ui.printMessage(statusMsg);
+        return statusMsg;
     }
 }

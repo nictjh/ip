@@ -23,10 +23,11 @@ public class DeleteTaskCommand extends Command {
     }
 
     @Override
-    public void execute(app.Solace solace) throws InvalidTaskNumberException, EmptyTaskListException {
+    public String execute(app.Solace solace) throws InvalidTaskNumberException, EmptyTaskListException {
         String status = solace.getTaskList().removeTask(index);
         Ui ui = solace.getUi();
         ui.printMessage(status + solace.getTaskList().getSize());
+        return status + solace.getTaskList().getSize();
     }
 
     @Override

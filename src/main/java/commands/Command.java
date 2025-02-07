@@ -13,6 +13,6 @@ public abstract class Command {
      * @param solace The Solace instance to execute the command with
      * @throws Exception If an error occurs during the execution
      */
-    public abstract void execute(Solace solace) throws Exception;
+    public abstract String execute(Solace solace) throws Exception;
     void logExecution() {}
 }

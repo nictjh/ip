@@ -25,11 +25,12 @@ public class CreateDeadlineCommand extends Command{
     }
 
     @Override
-    public void execute(Solace solace) {
+    public String execute(Solace solace) {
         DeadlineTask newDeadlineTask = new DeadlineTask(description, deadline); //Creates the deadline task
         String statusMsg = solace.getTaskList().addTask(newDeadlineTask);
-        Ui ui = solace.getUi();
-        ui.printMessage(statusMsg + solace.getTaskList().getSize());
+         Ui ui = solace.getUi();
+         ui.printMessage(statusMsg + solace.getTaskList().getSize());
+         return statusMsg + solace.getTaskList().getSize();
     }
 
     /**

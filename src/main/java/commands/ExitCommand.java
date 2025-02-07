@@ -9,10 +9,11 @@ import ui.Ui;
 public class ExitCommand extends Command {
 
     @Override
-    public void execute(Solace solace) {
+    public String execute(Solace solace) {
         solace.setAlive();
         Ui ui = solace.getUi();
         ui.printMessage("Bye. Hope to see you again soon!\n");
+        return "Bye. Hope to see you again soon!\n";
     }
 
     @Override

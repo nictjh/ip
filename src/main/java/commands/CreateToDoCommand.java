@@ -21,11 +21,12 @@ public class CreateToDoCommand extends Command {
     }
 
     @Override
-    public void execute(Solace solace) {
+    public String execute(Solace solace) {
         ToDoTask newTask = new ToDoTask(description);
         String statusMsg = solace.getTaskList().addTask(newTask);
         Ui ui = solace.getUi();
         ui.printMessage(statusMsg + solace.getTaskList().getSize());
+        return statusMsg + solace.getTaskList().getSize();
     }
 
     @Override
