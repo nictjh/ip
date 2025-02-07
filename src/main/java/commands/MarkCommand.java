@@ -22,10 +22,11 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(Solace solace) throws InvalidTaskNumberException, RepeatedTaskUpdateException {
+    public String execute(Solace solace) throws InvalidTaskNumberException, RepeatedTaskUpdateException {
         String status = solace.getTaskList().markTask(index);
         Ui ui = solace.getUi();
         ui.printMessage(status);
+        return status;
     }
 
     /**
@@ -36,8 +37,9 @@ public class MarkCommand extends Command {
      * @throws InvalidTaskNumberException If the task number is invalid or out of range
      * @throws RepeatedTaskUpdateException If the task is already marked as done
      */
-    public void execute(TaskList tasklist) throws InvalidTaskNumberException, RepeatedTaskUpdateException {
+    public String execute(TaskList tasklist) throws InvalidTaskNumberException, RepeatedTaskUpdateException {
         String status = tasklist.markTask(index);
+        return status;
     }
 
     @Override

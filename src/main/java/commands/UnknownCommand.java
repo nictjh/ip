@@ -10,7 +10,7 @@ import exceptions.UnknownCommandException;
 public class UnknownCommand extends Command {
 
     @Override
-    public void execute(Solace solace) throws UnknownCommandException {
+    public String execute(Solace solace) throws UnknownCommandException {
         throw new UnknownCommandException();
     }
 

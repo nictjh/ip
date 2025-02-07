@@ -27,11 +27,12 @@ public class CreateEventCommand extends Command {
     }
 
     @Override
-    public void execute(Solace solace) {
+    public String execute(Solace solace) {
         EventTask newEventTask = new EventTask(this.description, this.from, this.to); //Creates the event task
         String statusMsg = solace.getTaskList().addTask(newEventTask);
         Ui ui = solace.getUi();
         ui.printMessage(statusMsg + solace.getTaskList().getSize());
+        return statusMsg + solace.getTaskList().getSize();
     }
 
     @Override

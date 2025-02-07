@@ -34,12 +34,14 @@ public class FindDateCommand extends Command {
     }
 
     @Override
-    public void execute(app.Solace solace) {
+    public String execute(app.Solace solace) {
         Ui ui = solace.getUi();
         try {
             ui.printMessage(solace.getTaskList().findTasksByDate(this.DATE));
+            return solace.getTaskList().findTasksByDate(this.DATE);
         } catch (NullPointerException e) {
             ui.printMessage("No tasks found on " + this.DATE);
+            return "No tasks found on " + this.DATE;
         }
     }
 

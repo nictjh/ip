@@ -29,6 +29,20 @@ public class Ui {
     }
 
     /**
+     * Returns the chatbot's welcome message.
+     */
+    public static String getWelcomeMessage() {
+        return logo + "\n" + dividerLine + "\nHello! I'm Solace\nWhat can I do for you?\n";
+    }
+
+    /**
+     * Returns an exit message when the user quits.
+     */
+    public static String getGoodbyeMessage() {
+        return "Goodbye! Hope to see you again soon. 👋";
+    }
+
+    /**
      * Reads the next command from the user
      *
      * @param sc Scanner object to read input

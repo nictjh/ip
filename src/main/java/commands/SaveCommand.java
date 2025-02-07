@@ -25,14 +25,16 @@ public class SaveCommand extends Command {
     }
 
     @Override
-    public void execute(Solace solace) {
+    public String execute(Solace solace) {
         Ui ui = solace.getUi();
         Storage storage = solace.getStorage();
         try {
             storage.save(solace.getTaskList());
             ui.printMessage("Task list saved successfully in " + filePath + File.separator + FILE_NAME);
+            return "Task list saved successfully in " + filePath + File.separator + FILE_NAME;
         } catch (IOException e) {
             ui.printMessage("An error occurred while saving the task list");
+            return "An error occurred while saving the task list";
         }
     }
 

@@ -8,9 +8,10 @@ import ui.Ui;
 public class ListCommand extends Command {
 
     @Override
-    public void execute(app.Solace solace) {
+    public String execute(app.Solace solace) {
         Ui ui = solace.getUi();
         ui.printMessage(solace.getTaskList().printTasks());
+        return solace.getTaskList().printTasks();
     }
 
     @Override
