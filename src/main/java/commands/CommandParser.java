@@ -57,7 +57,13 @@ public class CommandParser {
             return new ListCommand();
         case "mark":
             validateArguments(inputArray, 2);
-            return new MarkCommand(Integer.parseInt(inputArray[1]));
+            // After validating I should remove the "mark" from the inputArray
+            // return new MarkCommand(Integer.parseInt(inputArray[1]));
+            int[] indexes = new int[inputArray.length - 1];
+            for (int i = 1; i < inputArray.length; i++) {
+                indexes[i - 1] = Integer.parseInt(inputArray[i]);
+            }
+            return new MarkCommand(indexes);
         case "unmark":
             validateArguments(inputArray, 2);
             return new UnmarkCommand(Integer.parseInt(inputArray[1]));

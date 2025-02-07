@@ -78,23 +78,27 @@ public class TaskList {
     }
 
     /**
-     * Marks a task as done
+     * Marks tasks as done.
      *
-     * @param num The index of the task to be marked as done, this is 1-indexed
-     * @return A String message indicating the task has been marked as done
+     * @param nums The indexes of the task to be marked as done, this is 1-indexed
+     * @return A String message indicating the task that has been marked as done
      * @throws InvalidTaskNumberException InvalidTaskNumberException If the task number is invalid
      * @throws RepeatedTaskUpdateException RepeatedTaskUpdateException If the task is already marked as done
      */
-    public String markTask(int num) throws InvalidTaskNumberException, RepeatedTaskUpdateException {
-        // Error handling
-        if (num - 1 < 0 || num - 1 >= this.tasks.size()) {
-            throw new InvalidTaskNumberException();
-        } else if (this.tasks.get(num - 1).showStatus()) {
-            throw new RepeatedTaskUpdateException();
+    public String markTask(ArrayList<Integer> nums) throws InvalidTaskNumberException, RepeatedTaskUpdateException {
+        StringBuilder keepTrack = new StringBuilder();
+        for (Integer num : nums) {
+            if (num - 1 < 0 || num - 1 >= this.tasks.size()) {
+                throw new InvalidTaskNumberException();
+            } else if (this.tasks.get(num - 1).showStatus()) {
+                throw new RepeatedTaskUpdateException();
+            }
+            Task target = this.tasks.get(num - 1);
+            target.markDone();
+            keepTrack.append(target.toString()).append("\n");
         }
-        Task target = this.tasks.get(num - 1);
-        target.markDone();
-        return "Nice! I've marked this task as done: \n\t" + target.toString() + "\n";
+
+        return "Nice! I've marked this task as done: \n" + keepTrack.toString().trim();
     }
 
     /**
@@ -147,7 +151,7 @@ public class TaskList {
      * Prints the list of tasks to be displayed in 1-indexed format
      * Overloaded method to print from specific ArrayList
      *
-     * @param listOfTasks The ArrayList<Task> to be printed
+     * @param listOfTasks The ArrayList of Task to be printed
      * @return A String message containing the list of tasks
      */
     public String printTask(ArrayList<Task> listOfTasks) {

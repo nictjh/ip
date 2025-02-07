@@ -1,4 +1,5 @@
 package commands;
+
 import exceptions.InvalidTaskNumberException;
 import exceptions.RepeatedTaskUpdateException;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,12 +26,24 @@ public class MarkCommandTest {
     void markCommand_validTask_marksTaskAsDone() throws RepeatedTaskUpdateException, InvalidTaskNumberException {
         //Verify of task 1 @start
         assertFalse(this.tasklist.getTask(0).showStatus(), "Task 1 should not be marked done initially");
-
         MarkCommand markCommand = new MarkCommand(1); // marks the first task
         markCommand.execute(this.tasklist);
 
         //Verify status of task 1
         assertTrue(this.tasklist.getTask(0).showStatus(), "Task 1 should be marked done");
+    }
+
+    @Test
+    void markCommand_multipleTasks_markTasksAsDone() throws RepeatedTaskUpdateException, InvalidTaskNumberException {
+
+        assertFalse(this.tasklist.getTask(0).showStatus(), "Task 1 should not be marked done initially");
+        assertFalse(this.tasklist.getTask(1).showStatus(), "Task 2 should not be marked done initially");
+
+        MarkCommand markCommand = new MarkCommand(1, 2); // Mark first and second tasks
+        markCommand.execute(this.tasklist);
+
+        assertTrue(this.tasklist.getTask(0).showStatus(), "Task 1 should be marked done");
+        assertTrue(this.tasklist.getTask(1).showStatus(), "Task 2 should be marked done");
     }
 
     @Test
