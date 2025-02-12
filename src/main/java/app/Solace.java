@@ -90,35 +90,4 @@ public class Solace extends Application {
             return "An error occurred: " + e.getMessage();
         }
     }
-
-    // /**
-    //  * Main entry to the application
-    //  * Handles user input and executes commands until program exits
-    //  * @param args Not used
-    //  */
-    // public static void main(String[] args) {
-        // Solace solace = new Solace();
-        // Scanner input = new Scanner(System.in);
-
-        // while (isAlive) {
-
-            // try {
-
-                // if (!input.hasNextLine()) {
-                    // break; //Fixing bug when there is no line to read but below call nextLine
-                // }
-
-                // String userInput = UI.readCommand(input);
-                // Command command = CommandParser.parse(userInput);
-                // command.execute(solace);
-
-            //} catch (MissingArgumentException | UnknownCommandException | InvalidTaskNumberException
-                     // | RepeatedTaskUpdateException | EmptyTaskListException e) {
-                // UI.printMessage(e.getMessage() + "\n");
-            // } catch (Exception e) {
-                // UI.printMessage("An error occurred: " + e.getMessage());
-            // }
-        // }
-        // input.close();
-    // }
 }
