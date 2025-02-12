@@ -27,6 +27,7 @@ public class Storage {
      * @param filePath The file path to store the task list
      */
     public Storage(String filePath) {
+        assert filePath != null : "File path should not be null";
         this.filePath = filePath;
     }
 
@@ -72,6 +73,7 @@ public class Storage {
      * @throws IOException If an error occurs while saving the task list
      */
     public void save(TaskList taskList) throws IOException {
+        assert taskList != null : "Task list should not be null";
         ArrayList<Task> tasks = taskList.getList();
         File file = new File(filePath + File.separator + "taskList.txt");
         if (!file.getParentFile().exists()) {

@@ -33,6 +33,7 @@ public class TaskList {
      * @param tasks List of tasks
      */
     public TaskList(ArrayList<Task> tasks) {
+        assert tasks != null : "Task List should not be null";
         this.tasks = tasks;
     }
 
@@ -41,6 +42,7 @@ public class TaskList {
     }
 
     public Task getTask(int index) {
+        assert index >= 0 && index < this.tasks.size() : "Index out of bounds";
         return this.tasks.get(index);
     }
 
@@ -51,6 +53,7 @@ public class TaskList {
      * @return A String message indicating the task has been added
      */
     public String addTask(Task task) {
+        assert task != null : "Task to be added should not be null";
         this.tasks.add(task);
         String defMsg = "Got it. I've added this task:\n\t";
         return defMsg + task.toString() + "\n";
@@ -179,6 +182,7 @@ public class TaskList {
      * @return A String message containing the list of tasks that match the date
      */
     public String findTasksByDate(LocalDate date) {
+        assert date != null : "Date should not be null";
         // System.out.println("Check running");
         // System.out.println("Query: " + date);
         ArrayList<Task> matched = new ArrayList<>();

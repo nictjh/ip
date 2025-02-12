@@ -19,6 +19,8 @@ public class CommandParser {
      * @return The full description of the task including the deadlines or event timings
      */
     private static String extractDescription(String[] entryArray) {
+        assert entryArray != null : "entryArray should not be null";
+        assert entryArray.length > 1 : "entryArray should have at least one argument after the command";
         StringBuilder desc = new StringBuilder();
         for (int i = 1; i < entryArray.length; ++i) {
             desc.append(entryArray[i]).append(" ");
@@ -34,6 +36,8 @@ public class CommandParser {
      * @throws MissingArgumentException If the number of arguments is less than the required number
      */
     private static void validateArguments(String[] args, int requiredNum) throws MissingArgumentException {
+        assert requiredNum > 0 : "requiredNum should be greater than 0";
+        assert args != null : "args should not be null";
         if (args.length < requiredNum) {
             throw new MissingArgumentException("Missing arguments in command, please try again with a number behind.");
         }
@@ -47,8 +51,11 @@ public class CommandParser {
      * @throws MissingArgumentException If the user input is missing arguments
      */
     public static Command parse(String input) throws MissingArgumentException {
+        assert input != null : "input should not be null";
         String[] inputArray = input.split(" ");
+        assert inputArray.length > 0 : "inputArray should have at least one element";
         String command = inputArray[0]; // Getting the commandType
+        assert command != null : "command should not be null";
 
         switch (command) {
         case "bye":
