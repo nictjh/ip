@@ -124,6 +124,10 @@ public class TaskList {
         return "OK, I've marked this task as not done yet: \n\t" + target.toString() + "\n";
     }
 
+    /**
+     * Prints the number of tasks in the taskList
+     *
+     */
     public String getSize() {
         return "Now you have " + this.tasks.size() + " tasks in the list.\n";
     }
@@ -226,7 +230,12 @@ public class TaskList {
         // System.out.println("Matched Tasks: " + matched.size());
         return printTask(matched);
     }
-
+    /**
+     * Finds tasks that match the keyword provided
+     *
+     * @param keyword The keyword to be matched
+     * @return A String message containing the list of tasks that match the keyword
+     */
     public String findTasksByKeyword(String keyword) {
         ArrayList<Task> matched = new ArrayList<>();
         for (Task task : this.tasks) {
@@ -236,8 +245,4 @@ public class TaskList {
         }
         return printTask(matched);
     }
-
-
-
-
 }

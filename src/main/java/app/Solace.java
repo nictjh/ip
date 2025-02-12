@@ -1,7 +1,5 @@
 package app;
 
-import java.util.Scanner;
-
 import commands.Command;
 import commands.CommandParser;
 import exceptions.EmptyTaskListException;

@@ -9,7 +9,7 @@ import java.time.format.ResolverStyle;
  * Represents a task with a deadline
  * Contains a description and a deadline
  */
-public class DeadlineTask extends Task{
+public class DeadlineTask extends Task {
 
 
     private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM d yyyy h:mm a");
@@ -52,7 +52,7 @@ public class DeadlineTask extends Task{
             try {
                 return LocalDateTime.parse(input, format);
             } catch (DateTimeParseException e) {
-                // Do nothing
+                System.out.println("DateTimeParseException occured when creating DeadlineTask");
             }
         }
 
@@ -101,7 +101,7 @@ public class DeadlineTask extends Task{
             try {
                 return this.by.format(format);
             } catch (DateTimeParseException e) {
-                // Do nothing
+                System.out.println("DateTimeParseException occured when writing DeadlineTask for saving");
             }
         }
         return "";

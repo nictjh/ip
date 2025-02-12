@@ -9,7 +9,7 @@ import ui.Ui;
  */
 public class CreateToDoCommand extends Command {
 
-    private String description;
+    private String taskDescription;
 
     /**
      * Creates a new CreateToDoCommand object
@@ -17,12 +17,12 @@ public class CreateToDoCommand extends Command {
      * @param description Description of the ToDo task
      */
     public CreateToDoCommand(String description) {
-        this.description = description;
+        this.taskDescription = description;
     }
 
     @Override
     public String execute(Solace solace) {
-        ToDoTask newTask = new ToDoTask(description);
+        ToDoTask newTask = new ToDoTask(this.taskDescription);
         String statusMsg = solace.getTaskList().addTask(newTask);
         Ui ui = solace.getUi();
         ui.printMessage(statusMsg + solace.getTaskList().getSize());

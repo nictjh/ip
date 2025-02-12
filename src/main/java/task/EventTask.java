@@ -87,7 +87,7 @@ public class EventTask extends Task {
             try {
                 return LocalDateTime.parse(input, format);
             } catch (DateTimeParseException e) {
-                // Do nothing
+                System.out.println("DateTimeParseException occured when creating EventTask");
             }
         }
         return null;
@@ -120,7 +120,7 @@ public class EventTask extends Task {
             try {
                 return dateTime.format(format);
             } catch (DateTimeParseException e) {
-                // Do nothing
+                System.out.println("DateTimeParseException occured when writing EventTask for saving");
             }
         }
         return "";

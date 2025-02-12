@@ -3,12 +3,16 @@ import app.Solace;
 import taskList.TaskList;
 import ui.Ui;
 
+/**
+ * Represents the command find tasks by keyword.
+ *
+ */
 public class FindCommand extends Command {
 
     private String keyword;
 
-    public FindCommand(String keyword) {
-        this.keyword = keyword;
+    public FindCommand(String target) {
+        this.keyword = target;
     }
 
     @Override

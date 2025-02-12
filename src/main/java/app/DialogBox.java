@@ -17,9 +17,9 @@ public class DialogBox extends HBox {
     /**
      * Creates a dialog box with the given message and image.
      *
-     * @param message
-     * @param i
-     * @param isUser
+     * @param message The message to be displayed in the dialog box.
+     * @param i The image to be displayed in the dialog box.
+     * @param isUser A boolean flag to determine if the dialog box is for the user or the bot.
      */
     public DialogBox(String message, Image i, boolean isUser) {
         this.text = new Label(message);

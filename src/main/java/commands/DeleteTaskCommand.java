@@ -1,9 +1,8 @@
 package commands;
 
-import ui.Ui;
-
 import exceptions.EmptyTaskListException;
 import exceptions.InvalidTaskNumberException;
+import ui.Ui;
 
 /**
  * Represents the command to delete a task from the task list
