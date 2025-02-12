@@ -1,6 +1,6 @@
 package commands;
-import app.Solace;
 
+import app.Solace;
 import exceptions.UnknownCommandException;
 
 /**

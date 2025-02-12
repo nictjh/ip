@@ -1,4 +1,5 @@
 package commands;
+
 import app.Solace;
 import exceptions.InvalidTaskNumberException;
 import exceptions.RepeatedTaskUpdateException;

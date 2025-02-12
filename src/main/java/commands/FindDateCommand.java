@@ -6,8 +6,6 @@ import java.time.format.ResolverStyle;
 
 import ui.Ui;
 
-import ui.Ui;
-
 /**
  * Represents the command to find tasks by date
  *
@@ -66,7 +64,6 @@ public class FindDateCommand extends Command {
             }
         }
 
-        // System.out.println("Failed to parse: " + input);
         return null;
     }
 }
