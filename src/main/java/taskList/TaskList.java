@@ -1,6 +1,9 @@
 package taskList;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import exceptions.EmptyTaskListException;
 import exceptions.InvalidTaskNumberException;
@@ -144,6 +147,8 @@ public class TaskList {
             return "No tasks found.\n";
         }
 
+        sortTasksByDate();
+
         taskList.append("Here are the tasks in your list:\n");
         for (int i = 0; i < this.tasks.size(); ++i) {
             // change to 1 indexed
@@ -168,6 +173,9 @@ public class TaskList {
         if (listOfTasks.isEmpty()) {
             return "No tasks found.\n";
         }
+
+        // Sort
+        sortTasksByDate();
 
         taskList.append("Here are the tasks found:\n");
         for (int i = 0; i < listOfTasks.size(); ++i) {
@@ -244,5 +252,34 @@ public class TaskList {
             }
         }
         return printTask(matched);
+    }
+
+
+    private LocalDateTime getTaskDate(Task task) {
+        if (task instanceof DeadlineTask) {
+            return ((DeadlineTask) task).getDateTime();
+        } else if (task instanceof EventTask) {
+            return ((EventTask) task).getStartDateTime();
+        } else {
+            return null; // if not DeadlineTask or EventTask
+        }
+    }
+
+    /**
+     * Sorts tasks by date
+     *
+     * @return
+     */
+    public void sortTasksByDate() {
+        // Only for instanceof DeadlineTask and EventTask
+        LocalDate currLocalDate = LocalDate.now();
+        this.tasks.sort(Comparator.comparing(task -> {
+            LocalDateTime taskDate = getTaskDate(task);
+            if (taskDate == null) {
+                return Long.MAX_VALUE; // put it at the end
+            }
+            return Math.abs(ChronoUnit.DAYS.between(currLocalDate, taskDate.toLocalDate()));
+        }, Comparator.nullsLast(Comparator.naturalOrder())));
+        System.out.println("Sorted taskList");
     }
 }
