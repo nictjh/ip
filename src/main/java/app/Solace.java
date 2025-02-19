@@ -16,6 +16,8 @@ import storage.Storage;
 import tasklist.TaskList;
 import ui.Ui;
 
+import java.io.File;
+
 /**
  * Represents the main application logic for Solace
  * Executes the corresponding commands from user input
@@ -35,6 +37,15 @@ public class Solace extends Application {
     public Solace() {
         UI = new Ui();
         isAlive = true;
+        File storageDir = new File(filePath);
+        if (!storageDir.exists()) {
+            boolean isCreated = storageDir.mkdirs();
+            if (!isCreated) {
+                UI.printMessage("An error occurred while creating the storage directory");
+            } else {
+                UI.printMessage("Storage directory created successfully");
+            }
+        }
         this.storage = new Storage(filePath);
         this.taskList = storage.load();
     }
