@@ -30,9 +30,9 @@ public class MarkCommand extends Command {
 
     @Override
     public String execute(Solace solace) throws InvalidTaskNumberException, RepeatedTaskUpdateException {
+        logExecution();
         String status = solace.getTaskList().markTask(indexes);
-        Ui ui = solace.getUi();
-        ui.printMessage(status);
+        displayStatusMessage(solace, status);
         return status;
     }
 
@@ -48,7 +48,16 @@ public class MarkCommand extends Command {
         String status = tasklist.markTask(indexes);
         return status;
     }
-
+    /**
+     * Displays the status message of the command execution
+     *
+     * @param solace The Solace instance to get the UI instance
+     * @param message The status message to display
+     */
+    private void displayStatusMessage(Solace solace, String message) {
+        Ui ui = solace.getUi();
+        ui.printMessage(message);
+    }
     @Override
     public void logExecution() {
         System.out.println("Mark Command is executed");

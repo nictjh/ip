@@ -1,5 +1,6 @@
 package commands;
 
+import app.Solace;
 import exceptions.EmptyTaskListException;
 import exceptions.InvalidTaskNumberException;
 import ui.Ui;
@@ -23,12 +24,21 @@ public class DeleteTaskCommand extends Command {
 
     @Override
     public String execute(app.Solace solace) throws InvalidTaskNumberException, EmptyTaskListException {
+        logExecution();
         String status = solace.getTaskList().removeTask(index);
-        Ui ui = solace.getUi();
-        ui.printMessage(status + solace.getTaskList().getSize());
+        displayStatusMessage(solace, status + solace.getTaskList().getSize());
         return status + solace.getTaskList().getSize();
     }
-
+    /**
+     * Displays the status message of the command execution
+     *
+     * @param solace The Solace instance to get the UI instance
+     * @param message The status message to display
+     */
+    private void displayStatusMessage(Solace solace, String message) {
+        Ui ui = solace.getUi();
+        ui.printMessage(message);
+    }
     @Override
     public void logExecution() {
         System.out.println("DeleteTask Command is executed");

@@ -22,20 +22,49 @@ public class DialogBox extends HBox {
      * @param isUser A boolean flag to determine if the dialog box is for the user or the bot.
      */
     public DialogBox(String message, Image i, boolean isUser) {
-        Text trial = new Text(message);
-        this.displayPic = new ImageView(i);
-
-        this.textFlow = new TextFlow(trial);
-        trial.setStyle("-fx-fill: white;");
-        this.textFlow.setMaxWidth(500);
-        this.textFlow.setStyle("-fx-padding: 10px;");
-        // Set image size
-        displayPic.setFitHeight(40);
-        displayPic.setFitWidth(40);
-
+        this.textFlow = initializeMessage(message);
+        this.displayPic = initializeImage(i);
         this.setSpacing(10);
         this.getStyleClass().add("dialog-box");
+        setAlignmentAndOrder(isUser);
+    }
 
+    /**
+     * Initializes the TextFlow for the message.
+     *
+     * @param message The message to be displayed.
+     * @return Configured TextFlow for the dialog box.
+     */
+    private TextFlow initializeMessage(String message) {
+        Text text = new Text(message);
+        text.setStyle("-fx-fill: white;");
+
+        TextFlow flow = new TextFlow(text);
+        flow.setMaxWidth(500);
+        flow.setStyle("-fx-padding: 10px;");
+
+        return flow;
+    }
+
+    /**
+     * Initializes the ImageView for the display picture.
+     *
+     * @param i The image to be displayed.
+     * @return Configured ImageView for the dialog box.
+     */
+    private ImageView initializeImage(Image i) {
+        ImageView imageView = new ImageView(i);
+        imageView.setFitHeight(40);
+        imageView.setFitWidth(40);
+        return imageView;
+    }
+
+    /**
+     * Sets alignment and order of children based on whether it's a user or bot message.
+     *
+     * @param isUser Boolean flag indicating if the dialog box is for the user or the bot.
+     */
+    private void setAlignmentAndOrder(boolean isUser) {
         if (isUser) {
             this.getStyleClass().add("user-message");
             this.setAlignment(Pos.TOP_RIGHT);
@@ -46,12 +75,23 @@ public class DialogBox extends HBox {
             this.getChildren().addAll(displayPic, textFlow); // Bot: Image first, then text
         }
     }
-
-
+    /**
+     * Factory method to create a user dialog box
+     *
+     * @param message The message to be displayed.
+     * @param i The image to be displayed.
+     * @return DialogBox object for the user.
+     */
     public static DialogBox getUserDialog(String message, Image i) {
         return new DialogBox(message, i, true);
     }
-
+    /**
+     * Factory method to create a bot dialog box
+     *
+     * @param message The message to be displayed.
+     * @param i The image to be displayed.
+     * @return DialogBox object for the bot.
+     */
     public static DialogBox getBotDialog(String message, Image i) {
         return new DialogBox(message, i, false);
     }

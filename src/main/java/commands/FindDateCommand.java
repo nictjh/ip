@@ -4,6 +4,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
+import app.Solace;
 import ui.Ui;
 
 /**
@@ -27,22 +28,30 @@ public class FindDateCommand extends Command {
      */
     public FindDateCommand(String date) {
         this.DATE = parseDateTime(date);
-        // System.out.println("FindDateCommand Parsed Date~~~~~~~~~~~~~~ : " + date);
-        // System.out.println("FindDateCommand Parsed Date~~~~~~~~~~~~~~ : " + this.DATE);
     }
 
     @Override
     public String execute(app.Solace solace) {
-        Ui ui = solace.getUi();
+        logExecution();
         try {
-            ui.printMessage(solace.getTaskList().findTasksByDate(this.DATE));
+            displayStatusMessage(solace, solace.getTaskList().findTasksByDate(this.DATE));
             return solace.getTaskList().findTasksByDate(this.DATE);
         } catch (NullPointerException e) {
-            ui.printMessage("No tasks found on " + this.DATE);
+            displayStatusMessage(solace, "No tasks found on " + this.DATE);
             return "No tasks found on " + this.DATE;
         }
     }
 
+    /**
+     * Displays the status message of the command execution
+     *
+     * @param solace The Solace instance to get the UI instance
+     * @param message The status message to display
+     */
+    private void displayStatusMessage(Solace solace, String message) {
+        Ui ui = solace.getUi();
+        ui.printMessage(message);
+    }
     @Override
     public void logExecution() {
         System.out.println("Find Date Command is executed");
@@ -60,7 +69,7 @@ public class FindDateCommand extends Command {
             try {
                 return LocalDate.parse(input, format);
             } catch (DateTimeParseException e) {
-                // Do nothing
+                System.out.println("Date format not matched in FindDate Command!");
             }
         }
 

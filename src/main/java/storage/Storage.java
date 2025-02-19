@@ -58,7 +58,6 @@ public class Storage {
                     newTask.get(markIndex).markDone();
                 }
             }
-            // System.out.println("Tasks loaded from storage");
         } catch (IOException e) {
             System.out.println("An error occurred while loading the task list from storage");
         }
@@ -90,7 +89,6 @@ public class Storage {
                 }
                 index++;
             }
-            //System.out.println("Task list saved successfully in " + file.toString());
         } catch (IOException e) {
             throw new IOException("An error occurred while saving the task list");
         }

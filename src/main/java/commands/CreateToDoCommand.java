@@ -22,13 +22,22 @@ public class CreateToDoCommand extends Command {
 
     @Override
     public String execute(Solace solace) {
+        logExecution();
         ToDoTask newTask = new ToDoTask(this.taskDescription);
         String statusMsg = solace.getTaskList().addTask(newTask);
-        Ui ui = solace.getUi();
-        ui.printMessage(statusMsg + solace.getTaskList().getSize());
+        displayStatusMessage(solace, statusMsg + solace.getTaskList().getSize());
         return statusMsg + solace.getTaskList().getSize();
     }
-
+    /**
+     * Displays the status message of the command execution
+     *
+     * @param solace The Solace instance to get the UI instance
+     * @param message The status message to display
+     */
+    private void displayStatusMessage(Solace solace, String message) {
+        Ui ui = solace.getUi();
+        ui.printMessage(message);
+    }
     @Override
     public void logExecution() {
         System.out.println("CreateToDo Command is executed");
