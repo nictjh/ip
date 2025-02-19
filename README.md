@@ -1,26 +1,64 @@
-# Duke project template
+# Solace Chatbot 💬
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+"A clear mind leads to a peaceful life" - TalkCock
 
-## Setting up in Intellij
+Solace is a playful and interactive chatbot application inspired by the ChatGPT theme. It helps you declutter your mind and stay on top of your tasks effortlessly, allowing you to focus on what truly matters. Designed with simplicity and intuition in mind, Solace provides a text-based interface for a distraction-free experience.
 
-Prerequisites: JDK 17, update Intellij to the most recent version.
+---
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 17** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-1. After that, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+## 🌟 Features
 
-**Warning:** Keep the `src\main\java` folder as the root folder for Java files (i.e., don't rename those folders or move Java files to another folder outside of this folder path), as this is the default location some tools (e.g., Gradle) expect to find Java files.
+- **Task Management Made Easy:**
+   - Add to-dos, deadlines, and events with a simple command.
+   - Mark tasks as done, unmark them, or delete them effortlessly.
+   - Keep track of all your tasks in one organized list.
+
+- **Playful Personality:**
+   - Fun, random greetings and goodbyes with emojis for an engaging experience.
+   - Inspired by ChatGPT's conversational style, making interactions enjoyable.
+
+- **Intuitive Text-Based Interface:**
+   - No clutter, no distractions – just you and your tasks.
+   - Simple commands to keep you in control of your to-do list.
+
+---
+
+## 📝 Usage
+
+Here are the commands you can use with Solace:
+
+| Command                            | Description                                                                                     |
+| ---------------------------------- |-------------------------------------------------------------------------------------------------|
+| `todo <description>`                | Adds a simple to-do task. <br>Example: `todo Read a book`                                       |
+| `deadline <description> /by <due date>` | Adds a task with a deadline. <br>Example: `deadline Submit report /by 01/02/2025 1800`          |
+| `event <description> /from <start time> /to <end time>` | Adds an event task. <br>Example: `event Team meeting /from 02/02/2025 1500 /to 02/02/2025 1800` |
+| `list`                             | Displays all the tasks in your list.                                                            |
+| `mark <task number>`                | Marks the specified task as done. <br>Example: `mark 1`                                         |
+| `unmark <task number>`              | Marks the specified task as not done. <br>Example: `unmark 1`                                   |
+| `delete <task number>`              | Deletes the specified task. <br>Example: `delete 1`                                             |
+| `bye`                              | Exits the chatbot.                                                                              |
+
+---
+
+## 🎨 UI Overview
+
+- **User Messages:** Displayed on the right with a green background and white text.
+- **Bot Responses:** Displayed on the left with a darker background and white text.
+- **Rounded Chat Bubbles:** Smooth, rounded corners for modern aesthetics.
+
+---
+
+## 🔧 Tech Stack
+
+- **JavaFX:** For building the interactive user interface.
+- **FXML:** Layout design for the UI components.
+- **CSS:** Custom styling for chat bubbles and overall UI theme.
+- **Java:** Core logic and backend functionality.
+
+---
+
+## Getting Started
+1. Download it from [here](https://github.com/nictjh/ip).
+2. Open the application
+3. Add your tasks
+4. Stay organized without the stress.
