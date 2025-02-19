@@ -32,8 +32,12 @@ public class MainWindow {
      */
     public void setSolace(Solace s) {
         this.solace = s;
-
-        // Display welcome message at startup
+        displayWelcomeMessage();
+    }
+    /**
+     * Displays the welcome message frm Solace
+     */
+    private void displayWelcomeMessage() {
         dialogContainer.getChildren().add(
                 DialogBox.getBotDialog(Ui.getWelcomeMessage(), botImg)
         );
@@ -41,19 +45,41 @@ public class MainWindow {
 
     @FXML
     private void initialize() {
-        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        initialiseImages();
+        initializeDialogContainer();
+        initializeUserInput();
+    }
+    /**
+     * Loads images for bot and user
+     */
+    private void initialiseImages() {
         botImg = new Image(this.getClass().getResourceAsStream("/images/bot.png"));
         userImg = new Image(this.getClass().getResourceAsStream("/images/user.jpg"));
+    }
+
+    /**
+     * Configures the dialog container properties
+     */
+    private void initializeDialogContainer() {
+        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.setPrefWidth(Region.USE_COMPUTED_SIZE);
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
         dialogContainer.setFillWidth(true);
+    }
 
+    /**
+     * Sets up the event listeners for user input.
+     */
+    private void initializeUserInput() {
         userInput.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER) {
                 handleUserInput();
             }
         });
+
+        sendButton.setOnAction(e -> handleUserInput());
     }
+
 
     @FXML
     private void handleUserInput() {

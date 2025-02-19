@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import commands.MarkCommand;
 import task.DeadlineTask;
-import taskList.TaskList;
+import tasklist.TaskList;
 import task.ToDoTask;
 import static org.junit.jupiter.api.Assertions.*;
 

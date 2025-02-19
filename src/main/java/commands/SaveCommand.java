@@ -26,18 +26,28 @@ public class SaveCommand extends Command {
 
     @Override
     public String execute(Solace solace) {
-        Ui ui = solace.getUi();
+        logExecution();
         Storage storage = solace.getStorage();
         try {
             storage.save(solace.getTaskList());
-            ui.printMessage("Task list saved successfully in " + filePath + File.separator + FILE_NAME);
+            displayStatusMessage(solace, "Task list saved successfully in " + filePath
+                    + File.separator + FILE_NAME);
             return "Task list saved successfully in " + filePath + File.separator + FILE_NAME;
         } catch (IOException e) {
-            ui.printMessage("An error occurred while saving the task list");
+            displayStatusMessage(solace, "An error occurred while saving the task list");
             return "An error occurred while saving the task list";
         }
     }
-
+    /**
+     * Displays the status message of the command execution
+     *
+     * @param solace The Solace instance to get the UI instance
+     * @param message The status message to display
+     */
+    private void displayStatusMessage(Solace solace, String message) {
+        Ui ui = solace.getUi();
+        ui.printMessage(message);
+    }
     @Override
     public void logExecution() {
         System.out.println("Save Command is executed");

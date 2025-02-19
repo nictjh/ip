@@ -25,11 +25,19 @@ public class UnmarkCommand extends Command {
     public String execute(Solace solace) throws InvalidTaskNumberException, RepeatedTaskUpdateException,
             RepeatedTaskUpdateException, InvalidTaskNumberException {
         String status = solace.getTaskList().unmarkTask(index);
-        Ui ui = solace.getUi();
-        ui.printMessage(status);
+        displayStatusMessage(solace, status);
         return status;
     }
-
+    /**
+     * Displays the status message of the command execution
+     *
+     * @param solace The Solace instance to get the UI instance
+     * @param message The status message to display
+     */
+    private void displayStatusMessage(Solace solace, String message) {
+        Ui ui = solace.getUi();
+        ui.printMessage(message);
+    }
     @Override
     public void logExecution() {
         System.out.println("Unmark Command is executed");

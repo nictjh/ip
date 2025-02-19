@@ -195,8 +195,6 @@ public class TaskList {
      */
     public String findTasksByDate(LocalDate date) {
         assert date != null : "Date should not be null";
-        // System.out.println("Check running");
-        // System.out.println("Query: " + date);
         ArrayList<Task> matched = new ArrayList<>();
 
         for (Task task : this.tasks) {
@@ -204,21 +202,17 @@ public class TaskList {
                 LocalDate taskDate = ((DeadlineTask) task).getLocalDate();
 
                 if (taskDate == null) {
-                    //System.out.println("DeadlineTask has null date. Skipping...");
                     continue; // Skip this task
                 }
 
-                // System.out.println("Checking~~~~~~~~~~~ : " + taskDate);
                 if (taskDate.toString().trim().equals(date.toString().trim())) {
                     matched.add(task);
-                    // System.out.println("Added something from Deadline");
                 }
             } else if (task instanceof EventTask) {
                 LocalDate eventDate = ((EventTask) task).getStartLocalDate();
                 LocalDate eventEndDate = ((EventTask) task).getEndLocalDate();
 
                 if (eventDate == null && eventEndDate == null) {
-                    // System.out.println("Skipping EventTask due to null start and end dates.");
                     continue;
                 }
 
@@ -228,14 +222,11 @@ public class TaskList {
                 boolean endMatches = (eventEndDate != null
                         && eventEndDate.toString().trim().equals(date.toString().trim()));
 
-                // Add to matched list if either start or end date matches
                 if (startMatches || endMatches) {
                     matched.add(task);
-                    // System.out.println("EventTask matched and added!");
                 }
             }
         }
-        // System.out.println("Matched Tasks: " + matched.size());
         return printTask(matched);
     }
     /**

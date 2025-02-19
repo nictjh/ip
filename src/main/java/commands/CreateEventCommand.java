@@ -28,13 +28,22 @@ public class CreateEventCommand extends Command {
 
     @Override
     public String execute(Solace solace) {
+        logExecution();
         EventTask newEventTask = new EventTask(this.eventDesc, this.startDateTime, this.endDateTime);
         String statusMsg = solace.getTaskList().addTask(newEventTask);
-        Ui ui = solace.getUi();
-        ui.printMessage(statusMsg + solace.getTaskList().getSize());
+        displayStatusMessage(solace, statusMsg + solace.getTaskList().getSize());
         return statusMsg + solace.getTaskList().getSize();
     }
-
+    /**
+     * Displays the status message of the command execution
+     *
+     * @param solace The Solace instance to get the UI instance
+     * @param message The status message to display
+     */
+    private void displayStatusMessage(Solace solace, String message) {
+        Ui ui = solace.getUi();
+        ui.printMessage(message);
+    }
     @Override
     public void logExecution() {
         System.out.println("Create Event Command is executed");

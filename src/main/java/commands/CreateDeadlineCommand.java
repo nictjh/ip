@@ -23,13 +23,12 @@ public class CreateDeadlineCommand extends Command {
         this.desc = description;
         this.deadline = dueDate;
     }
-
     @Override
     public String execute(Solace solace) {
+        logExecution();
         DeadlineTask newDeadlineTask = new DeadlineTask(this.desc, this.deadline); //Creates the deadline task
         String statusMsg = solace.getTaskList().addTask(newDeadlineTask);
-        Ui ui = solace.getUi();
-        ui.printMessage(statusMsg + solace.getTaskList().getSize());
+        displayStatusMessage(solace, statusMsg + solace.getTaskList().getSize());
         return statusMsg + solace.getTaskList().getSize();
     }
 
@@ -45,7 +44,16 @@ public class CreateDeadlineCommand extends Command {
         DeadlineTask newDeadlineTask = new DeadlineTask(this.desc, this.deadline); //Creates the deadline task
         return tasklist.addTask(newDeadlineTask);
     }
-
+    /**
+     * Displays the status message of the command execution
+     *
+     * @param solace The Solace instance to get the UI instance
+     * @param message The status message to display
+     */
+    private void displayStatusMessage(Solace solace, String message) {
+        Ui ui = solace.getUi();
+        ui.printMessage(message);
+    }
     @Override
     public void logExecution() {
         System.out.println("Create Deadline Command is executed");
