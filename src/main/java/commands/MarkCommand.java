@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import app.Solace;
 import exceptions.InvalidTaskNumberException;
 import exceptions.RepeatedTaskUpdateException;
-import taskList.TaskList;
+import tasklist.TaskList;
 import ui.Ui;
 
 /**
