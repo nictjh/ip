@@ -44,7 +44,9 @@ public class MainWindow {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         botImg = new Image(this.getClass().getResourceAsStream("/images/bot.png"));
         userImg = new Image(this.getClass().getResourceAsStream("/images/user.jpg"));
+        dialogContainer.setPrefWidth(Region.USE_COMPUTED_SIZE);
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        dialogContainer.setFillWidth(true);
 
         userInput.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER) {

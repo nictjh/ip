@@ -1,19 +1,19 @@
 package app;
 
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 /**
  * Represents a dialog box consisting of an ImageView and Label to simulate a chat bubble.
  */
 public class DialogBox extends HBox {
 
-    private Label text;
     private ImageView displayPic;
-
+    private TextFlow textFlow;
     /**
      * Creates a dialog box with the given message and image.
      *
@@ -22,15 +22,16 @@ public class DialogBox extends HBox {
      * @param isUser A boolean flag to determine if the dialog box is for the user or the bot.
      */
     public DialogBox(String message, Image i, boolean isUser) {
-        this.text = new Label(message);
+        Text trial = new Text(message);
         this.displayPic = new ImageView(i);
 
+        this.textFlow = new TextFlow(trial);
+        trial.setStyle("-fx-fill: white;");
+        this.textFlow.setMaxWidth(500);
+        this.textFlow.setStyle("-fx-padding: 10px;");
         // Set image size
         displayPic.setFitHeight(40);
         displayPic.setFitWidth(40);
-
-        text.setWrapText(true);
-        text.setMaxWidth(250);
 
         this.setSpacing(10);
         this.getStyleClass().add("dialog-box");
@@ -38,11 +39,11 @@ public class DialogBox extends HBox {
         if (isUser) {
             this.getStyleClass().add("user-message");
             this.setAlignment(Pos.TOP_RIGHT);
-            this.getChildren().addAll(text, displayPic); // User: Text first, then image
+            this.getChildren().addAll(textFlow, displayPic); // User: Text first, then image
         } else {
             this.getStyleClass().add("bot-message");
             this.setAlignment(Pos.TOP_LEFT);
-            this.getChildren().addAll(displayPic, text); // Bot: Image first, then text
+            this.getChildren().addAll(displayPic, textFlow); // Bot: Image first, then text
         }
     }
 
